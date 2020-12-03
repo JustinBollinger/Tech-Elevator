@@ -9,6 +9,7 @@ public class Exercises {
 	 sleepIn(true, false) => false
 	 sleepIn(false, true) => true
 	 */
+	
 	public boolean sleepIn(boolean isWeekday, boolean onVacation)
 	{
 		if(onVacation)
@@ -26,7 +27,6 @@ public class Exercises {
 	}
 	
 	
-	
 	/*
 	 2. We have two monkeys, a and b, and the parameters aSmile and bSmile indicate if each is smiling.
 	 We are in trouble if they are both smiling or if neither of them is smiling. Return true if we
@@ -35,6 +35,7 @@ public class Exercises {
 	 monkeyTrouble(false, false) => true
 	 monkeyTrouble(true, false) => false
 	 */
+	
 	public boolean monkeyTrouble(boolean aSmile, boolean bSmile) {
 		if(aSmile == bSmile)
 		{
@@ -45,8 +46,6 @@ public class Exercises {
 		return false;
 		}
 	}
-	
-	
 	
 	
 	/*
@@ -75,55 +74,196 @@ public class Exercises {
 	 diff21(21) => 0
 	 diff21(22) => 2
 	 diff21(-10) => 31
-	 */
+	 
+	 Goals of question:
+	 1. Difference between n and 21.
+	 2. Absolute value of the difference.
+	 3. If n>21  double it.
+	 
+	 return the answer
+	 */	
+	
 	public int diff21(int n) {
-		return 0;
+		
+		// step 1 get the difference
+		int difference = n - 21;
+
+		// step 2 make sure it is positive 
+		if(difference < 0)
+		{
+			difference = difference * -1;
+		}
+		
+		// step 3 make sure that if n > 21 we double it
+		if(n > 21)
+		{
+			// difference = difference * 2; <= means the same as line 101
+			difference *= 2;
+		}
+		
+		return difference;
 	}
 
+	
+	
+	
 	/*
-	 5. We have a loud talking parrot. The "hour" parameter is the current hour time in the range 0..23.
-	 We are in trouble if the parrot is talking and the hour is before 7 or after 20. Return true if
-	 we are in trouble.
+	 5. We have a loud talking parrot.
+	 
+	 The "hour" parameter is the current hour time in the range 0..23.
+	 We are in trouble if the parrot is talking and the hour is before 7 or after 20.
+	 
+	 Return true if we are in trouble.
+	 
 	 parrotTrouble(true, 6) => true
 	 parrotTrouble(true, 7) => false
 	 parrotTrouble(false, 6) => false
-	 */
-	public boolean parrotTrouble(boolean talking, int hour) {
-		return false;
-	}
+	 
+	 Being asked:
+	 1. Is parrot talking?
+	 	a. if no => not in trouble
+	 	b. if yes => check time
+	 		2. What time is parrot talking?
+	 			a. < 7 || > 20 => true
 
+	 return the answer.
+	 */
+	
+	public boolean parrotTrouble(boolean talking, int hour)
+	
+	{	
+		if(!talking)
+		{
+			return false;
+		}
+		
+		if(hour >= 7 && hour <= 20)
+		{
+			return false;
+		}
+			
+		return true;
+	}
+	
+
+	
+	
+	
 	/*
-	 6. Given 2 ints, a and b, return true if one if them is 10 or if their sum is 10.
+	 6. Given 2 ints, 
+	 a and b, 
+	 return true if one of them is 10 
+	 or if their sum is 10.
+	 
 	 makes10(9, 10) => true
 	 makes10(9, 9) => false
 	 makes10(1, 9) => true
+	 
+	 Being asked:
+	 1. a || b = 10?
+	 	a. true
+	 2. a + b = 10?
+	 	a. true
+	 
 	 */
-	public boolean makes10(int a, int b) {
+	
+	public boolean makes10(int a, int b) 
+	
+	{
+		int sum = a + b;
+		
+		if(sum == 10)
+		{
+			return true;
+		}
+		
+		if(a == 10 || b == 10)
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
+	
+	
+	
+	
+	
+	
 	/*
-	 7. Given 2 int values, return true if one is negative and one is positive. Except if the parameter
+	 7. Given 2 int values, return true if one is negative and one is positive.
+	 Except if the parameter
 	 "negative" is true, then return true only if both are negative.
 	 posNeg(1, -1, false) => true
 	 posNeg(-1, 1, false) => true
 	 posNeg(-4, -5, true) => true
+	 
+	 Goal:
+	 1. one is pos and the other is neg
+	 2. Exception: if bothMustBeNegative, then both a and b have to be neg.
 	 */
-	public boolean posNeg(int a, int b, boolean negative) {
+	
+//	[NOT DONE YET]
+	
+	public boolean posNeg(int a, int b, boolean bothMustBeNegative) {
+		
+		if(bothMustBeNegative)
+		{
+			if(a < 0 && b < 0)
+			{
+				return true;
+			}
+			else 
+			{
+				return false;
+			}
+		}
+		else if((a < 0 && b > 0) || (a > 0 && b < 0))
+		{
+			return true;
+		}
+		
 		return false;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*
 	 8. Return true if the given non-negative number is a multiple of 3 or a multiple of 5.
 	 (Hint: Think "mod".)
 	 or35(3) => true
 	 or35(10) => true
 	 or35(8) => false
+	 
+	 WILL USE % IN THIS ONE! SEE DAY 4 NOTES!
+	 If divide by 3 and remainder = 0, we know it is a multiple of 3.
+	 If not that, then we know it isn't.
+	 Same goes for 5.
+	 
 	 */
+	
 	public boolean or35(int n) {
-		return false;
+		
+		boolean isMultipleOfThree = n % 3 == 0;
+		boolean isMultipleOfFive = n % 5 == 0;
+		boolean resultEquals = isMultipleOfThree || isMultipleOfFive;
+		
+		
+		return resultEquals;
 	}
 
+	
+	
+	
 	/*
 	 9. Given two temperatures, return true if one is less than 0 and the other is greater than 100.
 	 icyHot(120, -1) => true
@@ -177,14 +317,27 @@ public class Exercises {
 	}
 
 	/*
-	 14. Given 2 int values, return true if they are both in the range 30..40 inclusive, or they are both
-	 in the range 40..50 inclusive.
+	 14. Given 2 int values, 
+	 return true if they are both in the range 30..40 inclusive, 
+	 or they are both in the range 40..50 inclusive.
+	 
 	 in3050(30, 31) => true
 	 in3050(30, 41) => false
 	 in3050(40, 50) => true
+	 
+	 Both have to be either between 30..40
+	 OR between 40..50.
+	 
 	 */
+	
 	public boolean in3050(int a, int b) {
-		return false;
+	
+		boolean isA3040 = a >=30 && a <= 40;
+		boolean isB3040 = b >=30 && b <= 40;
+		boolean isA4050 = a >=40 && a <= 50;
+		boolean isB4050 = b >=40 && b <= 50;
+		
+		return (isA3040 && isB3040) || (isA4050 && isB4050);
 	}
 
 	/*
@@ -194,36 +347,92 @@ public class Exercises {
 	 max1020(19, 11) => 19
 	 max1020(11, 9) => 11
 	 */
-	public int max1020(int a, int b) {
+	
+	public int max1020(int a, int b)
+	{
+		boolean isAInRange = a >= 10 && a <= 20;
+		boolean isBInRange = b >= 10 && b <= 20;
+		boolean areBothInRange = isAInRange && isBInRange;
+		
+		if(areBothInRange)
+		{
+			if (a > b)
+			{
+				return a;
+			}
+			else
+			{
+				return b;
+			}
+		}
+		else if (isAInRange)
+		{
+			return a;
+		}
+		else if (isBInRange)
+		{
+			return b;
+		}
 		return 0;
 	}
 
 	/*
-	 16. When squirrels get together for a party, they like to have cigars. A squirrel party is successful
-	 when the number of cigars is between 40 and 60, inclusive. Unless it is the weekend, in which case
-	 there is no upper bound on the number of cigars. Return true if the party with the given values is
-	 successful, or false otherwise.
+	 16. When squirrels get together for a party, they like to have cigars.
+	 A squirrel party is successful when the number of cigars is between 40 and 60, inclusive.
+	 Unless it is the weekend, in which case there is no upper bound on the number of cigars.
+	 Return true if the party with the given values is successful, or false otherwise.
+	 
 	 cigarParty(30, false) => false
 	 cigarParty(50, false) => true
 	 cigarParty(70, true) => true
+	 
+	 Number of cigars between 40 and 60, inclusive.
+	 isWeekend then has to be at least 40, but no upper bound.
+	 return true if the squirrels get cigars.
+	 
 	 */
 	public boolean cigarParty(int cigars, boolean isWeekend) {
-		return false;
+		
+		if (isWeekend)
+		{
+			return cigars >= 40;
+		}
+		return cigars >= 40 && cigars <= 60;
 	}
 
 	/*
-	 17. You and your date are trying to get a table at a restaurant. The parameter "you" is the stylishness
-	 of your clothes, in the range 0..10, and "date" is the stylishness of your date's clothes. The result
-	 returned will be 0 if you did not get the table, 1 if you might get the table, and 2 if you did get
-	 the table. If you or your date is very stylish (8 or more), then the result is 2 (yes). With the
-	 exception that if either of you has style of 2 or less, then the result is 0 (no). Otherwise the
-	 result is 1 (maybe).
+	 17. You and your date are trying to get a table at a restaurant.
+	 The parameter "you" is the stylishness of your clothes, in the range 0..10,
+	 and "date" is the stylishness of your date's clothes.
+	 
+	 The result returned will be
+	 0 if you did not get the table,
+	 1 if you might get the table,
+	 and 2 if you did get the table.
+	 
+	 If you or your date is very stylish (8 or more), 
+	 then the result is 2 (yes). 
+	 With the exception that if either of you has style of 2 or less,
+	 then the result is 0 (no).
+	 Otherwise the result is 1 (maybe).
+	 
 	 dateFashion(5, 10) => 2
 	 dateFashion(5, 2) => 0
 	 dateFashion(5, 5) => 1
 	 */
-	public int dateFashion(int you, int date) {
-		return 0;
+	
+	public int dateFashion(int you, int date)
+	
+	{	
+		if (you <= 2 || date <= 2)
+		{
+			return 0;
+		}
+		if (you >= 8 || date >= 8)
+		{
+			return 2;
+		}
+		return 1;
 	}
 
 	/*
@@ -234,21 +443,33 @@ public class Exercises {
 	 squirrelPlay(95, false) => false
 	 squirrelPlay(95, true) => true
 	 */
+	
 	public boolean squirrelPlay(int temp, boolean isSummer) {
 		return false;
 	}
 
+	
+	
+	
     /*
      19. Dessert Island Diner believes a meal isn't a meal without dessert. All meals come with
      a free dessert.
 
      There are three categories of free desserts: "standard", "special", and "ginormous".
-     The meal amount determines the dessert category: <= $10 (standard), <= $15 (special),
-     > $15 (ginormous). Unless it is your birthday -- on that day, an additional $5 is added
-     when calculating the category to potentially bump you up to the next delicious category.
+     The meal amount determines the dessert category: 
+     <= $10 (standard), 
+     <= $15 (special),
+     > $15 (ginormous).
+     
+     Unless it is your birthday -- on that day,
+     an additional $5 is added when calculating the category 
+     to potentially bump you up to the next delicious category.
 
-     For instance, if the amount of the meal was $7, and it is your birthday, $5 is added to
-     $7 when determining the dessert category, which means you would qualify for a "special".
+     For instance, 
+     if the amount of the meal was $7, 
+     and it is your birthday, 
+     $5 is added to $7 when determining the dessert category, 
+     which means you would qualify for a "special".
 
      yourCakeAndEatItToo(4.99, false) => "standard"
      yourCakeAndEatItToo(4.99, true) => "standard"
@@ -257,9 +478,33 @@ public class Exercises {
      yourCakeAndEatItToo(10.00, false) => "standard"
      yourCakeAndEatItToo(10.00, true) => "special"
      yourCakeAndEatItToo(11.00, false) => "special"
-     */
-    public String yourCakeAndEatItToo(double mealAmount, boolean isBirthday) {
-        return "";
+     
+     Question:
+     1. My birthday? y/n [DONE]
+     2. If yes, meal amount + $5.
+     3. Meal amount:
+     	a. <= $10 (standard), 
+     	b. <= $15 (special),
+     	c. > $15 (ginormous).
+     
+     */ 
+	
+    public String yourCakeAndEatItToo(double mealAmount, boolean isBirthday)
+    {	
+    	if (isBirthday)
+    	{
+    		mealAmount += 5;
+    	}
+    	
+    	if (mealAmount <= 10)
+    	{
+    		return "standard";
+    	}
+    	else if (mealAmount <= 15)
+    	{
+    		return "special";
+    	}
+    	return "ginormous";
     }
 
 	/*
