@@ -187,24 +187,22 @@ public class Exercises {
 
 	
 	
-	
-	
-	
-	
 	/*
-	 7. Given 2 int values, return true if one is negative and one is positive.
-	 Except if the parameter
-	 "negative" is true, then return true only if both are negative.
+	 7.
+	 Given 2 int values,
+	 return true if one is negative and one is positive.
+	 
+	 Except if the parameter "negative" is true, 
+	 then return true only if both are negative.
+	 
 	 posNeg(1, -1, false) => true
 	 posNeg(-1, 1, false) => true
 	 posNeg(-4, -5, true) => true
 	 
 	 Goal:
 	 1. one is pos and the other is neg
-	 2. Exception: if bothMustBeNegative, then both a and b have to be neg.
+	 2. Exception: if(bothMustBeNegative), then both a and b have to be neg.
 	 */
-	
-//	[NOT DONE YET]
 	
 	public boolean posNeg(int a, int b, boolean bothMustBeNegative) {
 		
@@ -230,13 +228,6 @@ public class Exercises {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	/*
 	 8. Return true if the given non-negative number is a multiple of 3 or a multiple of 5.
 	 (Hint: Think "mod".)
@@ -257,7 +248,6 @@ public class Exercises {
 		boolean isMultipleOfFive = n % 5 == 0;
 		boolean resultEquals = isMultipleOfThree || isMultipleOfFive;
 		
-		
 		return resultEquals;
 	}
 
@@ -265,45 +255,108 @@ public class Exercises {
 	
 	
 	/*
-	 9. Given two temperatures, return true if one is less than 0 and the other is greater than 100.
+	 9.
+	 Given two temperatures, 
+	 
+	 return true if one is less than 0
+	 and the other is greater than 100.
+	 
+	 
 	 icyHot(120, -1) => true
 	 icyHot(-1, 120) => true
 	 icyHot(2, 120) => false
 	 */
-	public boolean icyHot(int temp1, int temp2) {
+	
+	public boolean icyHot(int temp1, int temp2)
+	
+	{
+		if((temp1 < 0 || temp1 > 100) && (temp2 < 0 || temp2 > 100))
+		{
+			return true;
+		}
 		return false;
 	}
 
+	
+	
+	
+	
 	/*
-	 10. Given 2 int values, return true if either of them is in the range 10..20 inclusive.
+	 10.
+	 Given 2 int values,
+	 
+	 return true if either of them is in the range 10..20 inclusive.
+	 
 	 in1020(12, 99) => true
 	 in1020(21, 12) => true
 	 in1020(8, 99) => false
+	 
+	 Goal:
+	 Return true if either number exists within 10..20
 	 */
-	public boolean in1020(int a, int b) {
+	
+	public boolean in1020(int a, int b)
+	{
+		if((a >= 10 && a <= 20) || (b >= 10 && b <= 20))
+		{
+			return true;		
+		}
 		return false;
 	}
 
+	
+	
+	
 	/*
-	 11. We'll say that a number is "teen" if it is in the range 13..19 inclusive. Given 3 int values,
+	 11. We'll say that a number is "teen" 
+	 if it is in the range 13..19 inclusive.
+	 
+	 Given 3 int values,
+	 
 	 return true if 1 or more of them are teen.
+	 
 	 hasTeen(13, 20, 10) => true
 	 hasTeen(20, 19, 10) => true
 	 hasTeen(20, 10, 13) => true
+	 
 	 */
-	public boolean hasTeen(int a, int b, int c) {
+	
+	public boolean hasTeen(int a, int b, int c)
+	{
+		if((a >= 13 && a <= 19) || (b >= 13 && b <= 19) || (c >= 13 && c <= 19))
+		{
+			return true;
+		}
 		return false;
 	}
 
+	
+	
+	
 	/*
-	 12. We'll say that a number is "teen" if it is in the range 13..19 inclusive. Given 2 int values,
-	 return true if one or the other is teen, but not both.
+	 12.
+	 We'll say that a number is "teen" if it is in the range 13..19 inclusive.
+	 
+	 Given 2 int values,
+	 return true if one or the other is teen,
+	 but not both.
+	 
 	 loneTeen(13, 99) => true
 	 loneTeen(21, 19) => true
 	 loneTeen(13, 13) => false
+	 
+	 Goal:
+	 1. a ^ b = 13..19
+	 2. a && b => false
 	 */
-	public boolean loneTeen(int a, int b) {
-		return false;
+	
+	public boolean loneTeen(int a, int b)
+	{
+		if(a == b)
+		{
+			return false;
+		}
+		return ((a >= 13 && a <= 19) ^ (b >= 13 && b <= 19));
 	}
 
 	/*
@@ -311,11 +364,26 @@ public class Exercises {
 	 intMax(1, 2, 3) => 3
 	 intMax(1, 3, 2) => 3
 	 intMax(3, 2, 1) => 3
+	 
+	 If A = max, return A
+	 If not, if
 	 */
-	public int intMax(int a, int b, int c) {
-		return 0;
+	
+	public int intMax(int a, int b, int c) 
+	{
+		if(a >= b && a >=c)
+		{
+			return a;
+		}
+		else if (b >= a && b >= c)
+		{
+			return b;
+		}
+		return c;	
 	}
 
+	
+	
 	/*
 	 14. Given 2 int values, 
 	 return true if they are both in the range 30..40 inclusive, 
@@ -436,15 +504,33 @@ public class Exercises {
 	}
 
 	/*
-	 18. The squirrels in Palo Alto spend most of the day playing. In particular, they play if the temperature
-	 is between 60 and 90 (inclusive). Unless it is summer, then the upper limit is 100 instead of 90. Given
-	 an int temperature and a boolean isSummer, return true if the squirrels play and false otherwise.
+	 18. The squirrels in Palo Alto spend most of the day playing.
+	 
+	 In particular,
+	 they play if the temperature is between 60 and 90 (inclusive).
+	 
+	 Unless it is summer, 
+	 then the upper limit is 100 instead of 90.
+	 
+	 Given an int temperature and a boolean isSummer, 
+	 return true if the squirrels play 
+	 and false otherwise.
+	 
 	 squirrelPlay(70, false) => true
 	 squirrelPlay(95, false) => false
 	 squirrelPlay(95, true) => true
 	 */
 	
-	public boolean squirrelPlay(int temp, boolean isSummer) {
+	public boolean squirrelPlay(int temp, boolean isSummer) 
+	{
+		if (temp >= 60 && temp <= 90 && !isSummer)
+		{
+			return true;
+		}
+		else if (temp <= 100 && isSummer)
+		{
+			return true;
+		}
 		return false;
 	}
 
@@ -508,14 +594,33 @@ public class Exercises {
     }
 
 	/*
-	 20. Given 2 ints, a and b, return their sum. However, sums in the range 10..19 inclusive, are forbidden,
+	 20. Given 2 ints, a and b, 
+	 return their sum. 
+	 
+	 However, sums in the range 10..19 inclusive, 
+	 are forbidden,
 	 so in that case just return 20.
+	 
+	 
 	 sortaSum(3, 4) => 7
 	 sortaSum(9, 4) => 20
 	 sortaSum(10, 11) => 21
+	 
+	 Important:
+	 1. a + b
+	 2. answer 10..19 inclusive = forbidden
+	 3. If ^^ happens, return 20 instead.
 	 */
-	public int sortaSum(int a, int b) {
-		return 0;
+    
+    
+	public int sortaSum(int a, int b)
+	
+	{
+		if (a + b >= 10 && a + b <= 19)
+		{
+			return 20;
+		}
+		return a+=b;
 	}
 
 	/*
@@ -527,10 +632,31 @@ public class Exercises {
 	 alarmClock(5, false) => "7:00"
 	 alarmClock(0, false) => "10:00"
 	 */
-	public String alarmClock(int day, boolean vacation) {
-		return "";
+	public String alarmClock(int day, boolean vacation)
+	{
+	if (day > 0 && day < 6)
+	{
+		if (!vacation)
+		{
+			return "7:00";
+		}
+		else
+		{
+			return "10:00";
+		}
 	}
-
+	else if (vacation)
+	{
+		return "off";
+	}
+	else
+	{
+		return "10:00";
+	}
+	}
+	
+	
+	
 	/*
 	 22. Given a number n, return true if n is in the range 1..10, inclusive. Unless "outsideMode" is true,
 	 in which case return true if the number is less or equal to 1, or greater or equal to 10.
@@ -538,22 +664,47 @@ public class Exercises {
 	 in1To10(11, false) => false
 	 in1To10(11, true) => true
 	 */
-	public boolean in1To10(int n, boolean outsideMode) {
+	
+	public boolean in1To10(int n, boolean outsideMode) 
+	{
+		if ((n >= 1 && n <= 10) && !outsideMode)
+		{
+			return true;
+		}
+		if ((n <= 1 || n >= 10) && outsideMode)
+		{
+			return true;
+		}
 		return false;
 	}
 
+	
+	
 	/*
-	 23. We'll say a number is special if it is a multiple of 11 or if it is one more than a multiple of 11.
+	 23. We'll say a number is special if it is a multiple of 11
+	 or if it is one more than a multiple of 11.
+	 
 	 Return true if the given non-negative number is special.
 	 (Hint: Think "mod".)
+	 
 	 specialEleven(22) => true
 	 specialEleven(23) => true
 	 specialEleven(24) => false
 	 */
-	public boolean specialEleven(int n) {
+	
+	
+	public boolean specialEleven(int n) 
+	{
+		if (n % 11 <= 1)
+		{
+			return true;
+		}
 		return false;
 	}
 
+	
+	
+	
 	/*
 	 24. Return true if the given non-negative number is 1 or 2 more than a multiple of 20.
 	 (Hint: Think "mod".)
@@ -595,10 +746,18 @@ public class Exercises {
 	 nearTen(17) => false
 	 nearTen(19) => true
 	 */
-	public boolean nearTen(int num) {
-		return false;
+	
+	public boolean nearTen(int num)
+	{
+		boolean is2FromMultipleOf10 = num % 10 <= 2;
+		boolean is2LessFromMultipleOf10 = num % 10 >= 8;
+		boolean isNearMultipleOf10 = is2FromMultipleOf10 || is2LessFromMultipleOf10;
+		
+		return isNearMultipleOf10;
 	}
 
+	
+	
 	/*
 	 28. Given 2 ints, a and b, return their sum. However, "teen" values in the range 13..19 inclusive, are
 	 extra lucky. So if either value is a teen, just return 19.
