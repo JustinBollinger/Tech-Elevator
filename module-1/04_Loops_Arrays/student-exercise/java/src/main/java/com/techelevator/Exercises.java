@@ -10,6 +10,7 @@ public class Exercises
 	 * 
 	 * return true if 6 appears as either the first or last element in the array.
 	 * The array will be length 1 or more. 
+	 * 
 	 * firstLast6([1, 2, 6]) => true 
 	 * firstLast6([6, 1, 2, 3]) => true 
 	 * firstLast6([13, 6, 1, 2, 3]) => false
@@ -106,13 +107,22 @@ public class Exercises
 	 */
 	
 	public int sum3(int[] nums)
-	{		
+	{	
 		int sumArray1 = nums[0] + nums[1] + nums[2];
 		
 		return sumArray1;
 	}
 
-	
+//	*CAN ALSO USE A BASIC SUM ALGORITHM*
+//		
+//		int sum = 0;
+//		
+//		for(int i = 0; i <= nums.length -1; i++)
+//		{
+//			sum = sum + nums[i];
+//		}
+//		return sum;
+//	}
 	
 	/*
 	 * 6.
@@ -234,6 +244,7 @@ public class Exercises
 	/*
 	 * 10. Given 2 int arrays,
 	 * a and b, each length 3, 
+	 * 
 	 * return a new array length 2
 	 * containing their middle elements.
 	 * 
@@ -276,23 +287,41 @@ public class Exercises
 	}
 
 	/*
-	 * 12. Return the sum of the numbers in the array, returning 0 for an empty
-	 * array. Except the number 13 is very unlucky, so it does not count and numbers
-	 * that come immediately after a 13 also do not count. sum13([1, 2, 2, 1]) → 6
-	 * sum13([1, 1]) → 2 sum13([1, 2, 2, 1, 13]) → 6 sum13([1, 2, 2, 1, 13, 3])
-	 * → 6 sum13([1, 2, 2, 1, 13, 3, 4]) → 10
+	 * 12. Return the sum of the numbers in the array
+	 * returning 0 for an empty array.
+	 * 
+	 * Except the number 13 is very unlucky, so it does not count
+	 * and numbers that come immediately after a 13 also do not count.
+	 * 
+	 * sum13([1, 2, 2, 1]) => 6
+	 * sum13([1, 1]) => 2
+	 * sum13([1, 2, 2, 1, 13]) => 6
+	 * sum13([1, 2, 2, 1, 13, 3] => 6
+	 * sum13([1, 2, 2, 1, 13, 3, 4]) => 10
+	 * 
+	 * Goals:
+	 * 1. Most important => sum up elements within the array
+	 * 2. Next => how to skip 13
+	 * 3. Next => how to skip element AFTER 13
+	 * 
 	 */
+	
 	public int sum13(int[] nums)
 	{
-		return 0;
+		int sum = 0;
+		
+		for(int i = 0; i < nums.length; i++)
+		{
+			sum = sum + nums[i]; 
+			if (nums[i] == 13)
+			{
+				sum = sum - nums[i];
+				i = i + 1;
+			}
+		}
+		return sum;
 	}
 
-	
-	
-	
-	
-	
-	
 	
 	/*
 	 * 13. Given an array of ints,
@@ -354,22 +383,22 @@ public class Exercises
 	 * 
 	 */
 	
-	
 	public boolean sum28(int[] nums)
 	{
-		int addTheTwos = 0;
-		
+		int sum = 0;
 		
 		for (int i = 0; i < nums.length; i++)
 		{
-			if(nums[i] == 2)
+			if (nums[i] == 2) 
 			{
-				addTheTwos += 2;
+				sum = sum + nums[i];
 			}
-			return false;
-			
+		}
+		
+		if(sum == 8)
+		{
+			return true;
 		}
 		return false;
 	}
-
 }
