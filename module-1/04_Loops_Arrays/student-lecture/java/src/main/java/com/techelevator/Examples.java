@@ -10,7 +10,10 @@ public class Examples {
 		System.out.println("**** INCREMENT AND DECREMENT OPERATORS ****");
 		System.out.println("*******************************************");
 		System.out.println();
-
+		
+		
+		
+		
 		/* The ++ operator increments a variable by 1 (i.e. adds one to the
 		 * value of the variable and assigns the result to the variable) */
 		x = 1;
