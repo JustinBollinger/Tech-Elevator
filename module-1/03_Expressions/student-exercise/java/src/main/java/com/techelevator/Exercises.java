@@ -60,9 +60,7 @@ public class Exercises {
 		{
 			return (a + b) * 2;
 		}
-		{
-			return (a + b);
-		}
+		return (a + b);
 	}	
 	
 	
@@ -137,12 +135,12 @@ public class Exercises {
 			return false;
 		}
 		
-		if(hour >= 7 && hour <= 20)
+		if(hour < 7 || hour > 20)
 		{
-			return false;
+			return true;
 		}
 			
-		return true;
+		return false;
 	}
 	
 
@@ -1064,9 +1062,6 @@ public class Exercises {
 		{
 			return sum;
 		}
-		else
-		{
 			return 0;
-		}
 	}
 }
