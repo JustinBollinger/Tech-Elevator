@@ -15,6 +15,8 @@ public class Lecture {
 
 		/* create an new instance of String using a literal */
 
+		String name = "Justin";
+		
 		
 		System.out.println();
 		System.out.println("******************************");
@@ -22,6 +24,10 @@ public class Lecture {
 		System.out.println("******************************");
 		System.out.println();
 
+		
+		String firstName = name.substring(0, 6);
+		System.out.println(firstName);
+		
 
 		/* Other commonly used methods:
 		 *

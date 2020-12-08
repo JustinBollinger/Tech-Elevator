@@ -22,11 +22,10 @@ public class LinearConvert
 		
 		System.out.println(determineMeasurement(measurement, unitType));
 
-		
-		
-		
-		
-	}
+		}
+	
+	
+	
 	public static String determineMeasurement(int measurement, String unitType)
 	{
 		if (unitType.toUpperCase().startsWith("M"))

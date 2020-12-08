@@ -7,44 +7,47 @@ public class Fibonacci
 
 	public static void main(String[] args) 
 	{
+		// helper objects
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println("Enter a number to see the Fibonacci sequence leading to that number:");
-		String enterANumber = scanner.nextLine();
+		// variables
+		String input;
+		int maxValue;
+		String fibonacciSequence = " ";
 		
-		int enteredNumber = Integer.parseInt(enterANumber);
+		// get user input
+		System.out.print("What is the max fibonacci number you want? ");
+		input = scanner.nextLine();
+		maxValue = Integer.parseInt(input);
 		
-		System.out.println(fibonacciSequence(enteredNumber));
-	}
-	public static int fibonacciSequence(int enteredNumber)
-	{
-		System.out.println("Fibonacci Sequence: ");
-		int firstNumber = 0;
-		int secondNumber = 1;
-		int sum = 0;
-		String fibNumbers = "0";
+		// perform the calculations
+		fibonacciSequence = calculateFibonacciSequence(maxValue);
 		
-		if (enteredNumber == 0)
-		{
-			return 0;
-		}
-		else if (enteredNumber ==1)
-		{
-			return 1;
-		}
-		else 
-		{
-			while (enteredNumber >= sum)
-			{
-				
-				firstNumber = secondNumber;
-				secondNumber = sum;
-				sum = firstNumber + secondNumber;
-				String secondNumberString = String.valueOf(secondNumber);
-				System.out.print(secondNumber + ", ");
-			}
-		}
-		return secondNumber;
+		
+		// display the output
+		System.out.println();
+		System.out.println("The fibonacci sequence for " + maxValue + " is: ");
+		System.out.println(fibonacciSequence);	
 	}
 	
+	
+	
+	public static String calculateFibonacciSequence(int maxValue)
+	{
+		String sequence = "0 ";
+		int first = 0;
+		int second = 1;
+		
+		while(second <= maxValue)
+		{
+			// add the numbers BEFORE you do the increment!
+			sequence += second + " ";
+			
+			int temporaryVariable = first + second;
+			first = second;
+			second = temporaryVariable;
+		}
+		
+		return sequence;
+	}
 }

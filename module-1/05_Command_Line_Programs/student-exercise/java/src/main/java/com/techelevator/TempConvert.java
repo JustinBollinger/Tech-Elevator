@@ -17,12 +17,12 @@ public class TempConvert
 		
 		if (degreesOrCelsius.toUpperCase().startsWith("F"))
 		{
-			double fahrToCel = ((tempAnswer - 32) / 1.8); 
+			int fahrToCel =(int) ((tempAnswer - 32) / 1.8); 
 			System.out.println(tempAnswer + "F converts to " + fahrToCel + "C.");
 		}
 		if (degreesOrCelsius.toUpperCase().startsWith("C"))
 		{
-			double celToFahr = ((tempAnswer * 1.8) +32);
+			int celToFahr = (int) ((tempAnswer * 1.8) +32);
 			System.out.println(tempAnswer + "C converts to " + celToFahr + "F.");
 		}
 	}
