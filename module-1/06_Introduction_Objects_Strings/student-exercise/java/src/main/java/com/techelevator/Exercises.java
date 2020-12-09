@@ -165,8 +165,9 @@ public class Exercises
 	 * Given 2 strings, a and b, return a string of the form short+long+short, with
 	 * the shorter string on the outside and the longer string on the inside. The
 	 * strings will not be the same length, but they may be empty (length 0).
-	 * comboString("Hello", "hi") → "hiHellohi" comboString("hi", "Hello") →
-	 * "hiHellohi" comboString("aaa", "b") → "baaab"
+	 * comboString("Hello", "hi") => "hiHellohi"
+	 * comboString("hi", "Hello") => "hiHellohi" 
+	 * comboString("aaa", "b") => "baaab"
 	 */
 	
 	
@@ -189,9 +190,9 @@ public class Exercises
 	 * Given 2 strings, return their concatenation, except omit the first char of
 	 * each. The strings will be at least length 1. 
 	 * 
-	 * nonStart("Hello", "There") →
-	 * "ellohere" nonStart("java", "code") → "avaode" nonStart("shotl", "java")
-	 * → "hotlava"
+	 * nonStart("Hello", "There") => "ellohere"
+	 * nonStart("java", "code") => "avaode"
+	 * nonStart("shotl", "java") => "hotlava"
 	 */
 	
 	public String nonStart(String a, String b)
@@ -204,8 +205,11 @@ public class Exercises
 	
 	/*
 	 * Given a string, return a "rotated left 2" version where the first 2 chars are
-	 * moved to the end. The string length will be at least 2. left2("Hello") →
-	 * "lloHe" left2("java") → "vaja" left2("Hi") → "Hi"
+	 * moved to the end. The string length will be at least 2.
+	 * 
+	 * left2("Hello") => "lloHe"
+	 * left2("java") => "vaja"
+	 * left2("Hi") => "Hi"
 	 */
 	
 	public String left2(String str)
@@ -218,8 +222,11 @@ public class Exercises
 	
 	/*
 	 * Given a string, return a "rotated right 2" version where the last 2 chars are
-	 * moved to the start. The string length will be at least 2. right2("Hello") →
-	 * "loHel" right2("java") → "vaja" right2("Hi") → "Hi"
+	 * moved to the start. The string length will be at least 2.
+	 * 
+	 * right2("Hello") => "loHel" 
+	 * right2("java") => "vaja" 
+	 * right2("Hi") => "Hi"
 	 */
 	
 	public String right2(String str)
@@ -235,8 +242,11 @@ public class Exercises
 	/*
 	 * Given a string, return a string length 1 from its front, unless front is
 	 * false, in which case return a string length 1 from its back. The string will
-	 * be non-empty. theEnd("Hello", true) → "H" theEnd("Hello", false) → "o"
-	 * theEnd("oh", true) → "o"
+	 * be non-empty.
+	 * 
+	 * theEnd("Hello", true) => "H"
+	 * theEnd("Hello", false) => "o"
+	 * theEnd("oh", true) => "o"
 	 */
 	
 	public String theEnd(String str, boolean front)
@@ -253,13 +263,20 @@ public class Exercises
 	
 	/*
 	 * Given a string, return a version without both the first and last char of the
-	 * string. The string may be any length, including 0. withoutEnd2("Hello") →
-	 * "ell" withoutEnd2("abc") → "b" withoutEnd2("ab") → ""
+	 * string. The string may be any length, including 0.
+	 * 
+	 * withoutEnd2("Hello") => "ell"
+	 * withoutEnd2("abc") => "b"
+	 * withoutEnd2("ab") => ""
 	 */
 	
 	public String withoutEnd2(String str)
 	{
-		return null;
+		if (str.length() <= 2) 
+		{
+			return "";
+		}
+		return str.substring(1, str.length() -1);
 	}
 
 	
@@ -270,8 +287,10 @@ public class Exercises
 	/*
 	 * Given a string of even length, return a string made of the middle two chars,
 	 * so the string "string" yields "ri". The string length will be at least 2.
-	 * middleTwo("string") → "ri" middleTwo("code") → "od" middleTwo("Practice")
-	 * → "ct"
+	 * 
+	 * middleTwo("string") => "ri" 
+	 * middleTwo("code") => "od" 
+	 * middleTwo("Practice") => "ct"
 	 */
 	
 	public String middleTwo(String str)
@@ -287,9 +306,9 @@ public class Exercises
 	/*
 	 * Given a string, return true if it ends in "ly".
 	 * 
-	 * endsLy("oddly") → true
-	 * endsLy("y") → false
-	 * endsLy("oddy") → false
+	 * endsLy("oddly") => true
+	 * endsLy("y") => false
+	 * endsLy("oddy") => false
 	 */
 	
 	
@@ -383,115 +402,240 @@ public class Exercises
 	 * hasBad("xbadxx") => true
 	 * hasBad("xxbadxx") => false
 	 */
+	
 	public boolean hasBad(String str)
 	{
-		if (str.startsWith("b"))
+		if (str.length() == 3)
+		{
+			return str.substring (0,3).equals("bad");
+		}
 		
+		if(str.length() >= 4)
+		{
+			return str.substring(0, 3).equals("bad") || str.substring(1, 4).equals("bad");
+		}
 		
 		return false;
 	}
 
+	
+	
 	/*
 	 * Given a string and a non-negative int n, return a larger string that is n
-	 * copies of the original string. stringTimes("Hi", 2) → "HiHi"
-	 * stringTimes("Hi", 3) → "HiHiHi" stringTimes("Hi", 1) → "Hi"
+	 * copies of the original string.
+	 * 
+	 * stringTimes("Hi", 2) => "HiHi"
+	 * stringTimes("Hi", 3) => "HiHiHi" 
+	 * stringTimes("Hi", 1) => "Hi"
 	 */
+	
+	
 	public String stringTimes(String str, int n)
 	{
-		return null;
+		
+		return str.repeat(n);
+		
 	}
 
+	
+	
 	/*
 	 * Given a string and a non-negative int n, we'll say that the front of the
 	 * string is the first 3 chars, or whatever is there if the string is less than
-	 * length 3. Return n copies of the front; frontTimes("Chocolate", 2) →
-	 * "ChoCho" frontTimes("Chocolate", 3) → "ChoChoCho" frontTimes("Abc", 3) →
-	 * "AbcAbcAbc"
+	 * length 3. Return n copies of the front;
+	 * 
+	 * frontTimes("Chocolate", 2) => "ChoCho"
+	 * frontTimes("Chocolate", 3) => "ChoChoCho"
+	 * frontTimes("Abc", 3) => "AbcAbcAbc"
 	 */
+	
 	public String frontTimes(String str, int n)
 	{
-		return null;
+		if(str.length() >= 3)
+		{
+			return str.substring(0, 3).repeat(n);
+		}
+		
+		return str.substring(0).repeat(n);
 	}
 
+	
+	
+	
+	
+	
 	/*
 	 * Count the number of "xx" in the given string. We'll say that overlapping is
-	 * allowed, so "xxx" contains 2 "xx". countXX("abcxx") → 1 countXX("xxx") →
-	 * 2 countXX("xxxx") →
+	 * allowed, so "xxx" contains 2 "xx".
+	 * 
+	 * countXX("abcxx") => 1
+	 * countXX("xxx") => 2
+	 * countXX("xxxx") => 3
 	 */
+	
 	public int countXX(String str)
 	{
-		return 0;
+		int count = 0;
+		
+	    for(int i = 0; i < str.length() - 1; i++)
+	    {
+	        if(str.substring(i, i + 2).equals("xx"))
+	            {
+	        		count++;
+	            }
+	    }
+	    return count;
 	}
+	
+//	Alternative approach found online:
+//	
+//	if(str.length() <= 2 && !str.equals("xx")){
+//	return 0;
+//	}
+//	if(str.charAt(0) == 'x' && str.charAt(1) == 'x'){
+//	return 1 + countXX(str.substring(1));
+//	}
+//	return countXX(str.substring(1));
+//	}
+//	
 
+	
+	
+	
 	/*
 	 * Given a string, return true if the first instance of "x" in the string is
-	 * immediately followed by another "x". doubleX("axxbb") → true
-	 * doubleX("axaxax") → false doubleX("xxxxx") → true
+	 * immediately followed by another "x".
+	 * 
+	 * doubleX("axxbb") => true
+	 * doubleX("axaxax") => false
+	 * doubleX("xxxxx") => true
 	 */
+	
+	
 	public boolean doubleX(String str)
 	{
+		for(int i = 0; i < str.length() - 1; i++)
+		{
+			if(str.charAt(i) == 'x')
+			{
+				if(str.charAt(i + 1) == 'x')
+					return true;
+				else
+					return false;
+			}
+		}	
 		return false;
 	}
 
+	
+	
+	
+	
 	/*
 	 * Given a string, return a new string made of every other char starting with
-	 * the first, so "Hello" yields "Hlo". stringBits("Hello") → "Hlo"
-	 * stringBits("Hi") → "H" stringBits("Heeololeo") → "Hello"
+	 * the first, so "Hello" yields "Hlo".
+	 * stringBits("Hello") => "Hlo"
+	 * stringBits("Hi") => "H"
+	 * stringBits("Heeololeo") => "Hello"
 	 */
+	
+	
 	public String stringBits(String str)
 	{
 		return null;
 	}
 
+	
+	
+	
+	
 	/*
 	 * Given a non-empty string like "Code" return a string like "CCoCodCode".
-	 * stringSplosion("Code") → "CCoCodCode" stringSplosion("abc") → "aababc"
-	 * stringSplosion("ab") → "aab"
+	 * 
+	 * stringSplosion("Code") => "CCoCodCode"
+	 * stringSplosion("abc") => "aababc"
+	 * stringSplosion("ab") => "aab"
 	 */
+	
+	
 	public String stringSplosion(String str)
 	{
 		return null;
 	}
 
+	
+	
+	
+	
 	/*
 	 * Given a string, return the count of the number of times that a substring
 	 * length 2 appears in the string and also as the last 2 chars of the string, so
-	 * "hixxxhi" yields 1 (we won't count the end substring). last2("hixxhi") → 1
-	 * last2("xaxxaxaxx") → 1 last2("axxxaaxx") → 2
+	 * "hixxxhi" yields 1 (we won't count the end substring).
+	 * 
+	 * last2("hixxhi") => 1
+	 * last2("xaxxaxaxx") => 1
+	 * last2("axxxaaxx") => 2
 	 */
+	
 	public int last2(String str)
 	{
 		return 0;
 	}
 
+	
+	
+	
 	/*
 	 * Given a string, return a version where all the "x" have been removed. Except
-	 * an "x" at the very start or end should not be removed. stringX("xxHxix") →
-	 * "xHix" stringX("abxxxcd") → "abcd" stringX("xabxxxcdx") → "xabcdx"
+	 * an "x" at the very start or end should not be removed.
+	 * stringX("xxHxix") => "xHix"
+	 * stringX("abxxxcd") => "abcd" 
+	 * stringX("xabxxxcdx") => "xabcdx"
 	 */
+	
 	public String stringX(String str)
 	{
 		return null;
 	}
 
+	
+	
+	
+	
 	/*
 	 * Given a string, return a string made of the chars at indexes 0,1, 4,5, 8,9
-	 * ... so "kittens" yields "kien". altPairs("kitten") → "kien"
-	 * altPairs("Chocolate") → "Chole" altPairs("CodingHorror") → "Congrr"
+	 * ... so "kittens" yields "kien".
+	 * 
+	 * altPairs("kitten") => "kien"
+	 * altPairs("Chocolate") => "Chole"
+	 * altPairs("CodingHorror") => "Congrr"
 	 */
+	
 	public String altPairs(String str)
 	{
 		return null;
 	}
 
+	
+	
+	
+	
 	/*
 	 * Suppose the string "yak" is unlucky. Given a string, return a version where
 	 * all the "yak" are removed. The "yak" strings will not overlap.
-	 * stringYak("yakpak") → "pak" stringYak("pakyak") → "pak"
-	 * stringYak("yak123ya") → "123ya"
+	 * 
+	 * stringYak("yakpak") => "pak"
+	 * stringYak("pakyak") => "pak"
+	 * stringYak("yak123ya") => "123ya"
 	 */
+	
 	public String stringYak(String str)
 	{
+		if (str.contains("yak"))
+		{
+			return str = str.replace("yak", "");
+		}
+		
 		return null;
 	}
 
