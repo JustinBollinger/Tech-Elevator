@@ -542,7 +542,15 @@ public class Exercises
 	
 	public String stringBits(String str)
 	{
-		return null;
+		int length = str.length();
+		String everyOtherLetter = "";
+		
+		for (int i = 0; i < length; i += 2)
+		{
+			everyOtherLetter += str.charAt(i);
+		}
+		
+		return everyOtherLetter;
 	}
 
 	
@@ -560,7 +568,17 @@ public class Exercises
 	
 	public String stringSplosion(String str)
 	{
-		return null;
+		String  addLetters = "";
+		
+		for (int i = 0; i <= str.length(); i++)
+		{	
+			addLetters += str.substring(0, i);
+		}	
+		
+		return addLetters;
+			
+		
+		
 	}
 
 	
@@ -579,10 +597,37 @@ public class Exercises
 	
 	public int last2(String str)
 	{
-		return 0;
+		if(str.length() < 2)
+		{
+			return 0;
+		}
+		
+		String end = str.substring(str.length() -2);
+		
+		int count = 0;
+		
+		for(int i = 0; i < str.length() - 2; i++)
+		{
+			if(str.substring(i, i + 2).equals(end))
+			{
+				count++;
+			}
+		}
+		
+		return count;
+		
 	}
 
 	
+	
+//	{
+//		if(str.length() >= 3)
+//		{
+//			return str.substring(0, 3).repeat(n);
+//		}
+//		
+//		return str.substring(0).repeat(n);
+//	}
 	
 	
 	/*
@@ -595,7 +640,22 @@ public class Exercises
 	
 	public String stringX(String str)
 	{
-		return null;
+		
+		boolean xFirst = str.startsWith("x");
+		boolean xLast = str.startsWith("x");
+		String noMoreX = str.replace("x", "");
+		
+		if(xFirst)
+			{
+				noMoreX = "x" + noMoreX;
+			}
+		if(xLast && str.length() > 1)
+		{
+			noMoreX= noMoreX + "x";
+		}
+		
+		return noMoreX;
+		
 	}
 
 	
@@ -613,7 +673,20 @@ public class Exercises
 	
 	public String altPairs(String str)
 	{
-		return null;
+		String skipPairs = "";
+		
+		for (int i = 0; i < str.length(); i += 4)
+		{
+			int end = i + 2;
+			
+			if(end > str.length())
+			{
+				end = str.length();
+			}
+			skipPairs = skipPairs + str.substring(i, end);
+		}
+		
+		return skipPairs;
 	}
 
 	
