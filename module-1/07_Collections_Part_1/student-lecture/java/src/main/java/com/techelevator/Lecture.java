@@ -226,7 +226,7 @@ public class Lecture {
 			System.out.println(name);
 		}
 		
-		
+		// ^^^ for-each loop
 
 	}
 }
