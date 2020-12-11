@@ -36,7 +36,7 @@ public class Lecture {
 		dailySpecials.put("Sunday", "Pancakes");
 				
 		String tuesdaySpecial = dailySpecials.get("Tuesday");		
-		System.out.println("Tuesday's Speicial: " + tuesdaySpecial);
+		System.out.println("Tuesday's Special: " + tuesdaySpecial);
 		
 		dailySpecials.put("Monday", "Liver");
 		
@@ -53,7 +53,7 @@ public class Lecture {
 		
 		// Option 1 to get loop through all the values
 		// - get the keys
-		// - loop thorugh the keys
+		// - loop through the keys
 		// -- get the value for each key
 		
 		// the keys of a map are a set
@@ -127,7 +127,15 @@ public class Lecture {
 		}
 		System.out.println("Monday: " + mondaySpecial);
 		
-
+		System.out.println();
+		System.out.println();
+		
+		
+		// use of .containsKey() function
+		if(dailySpecials.containsKey("Tuesday"));
+		{
+			System.out.println("The map contains Tuesday.");
+		}
 	}
 
 }
