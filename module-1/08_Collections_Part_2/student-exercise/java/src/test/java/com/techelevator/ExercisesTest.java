@@ -449,4 +449,115 @@ public class ExercisesTest {
 
 	}
 
+	/*
+	 * Given two maps, Map<String, Integer>, merge the two into a new map, Map<String, Integer> where keys in Map2,
+	 * and their Integer values, are added to the Integer values of matching keys in Map1. Return the new map.
+	 *
+	 * Unmatched keys and their Integer values in Map2 are simply added to Map1.
+	 *
+	 * consolidateInventory({"SKU1": 100, "SKU2": 53, "SKU3": 44} {"SKU2":11, "SKU4": 5})
+	 * 	 → {"SKU1": 100, "SKU2": 64, "SKU3": 44, "SKU4": 5}
+	 *
+	 */
+	@Test
+	public void exercise09_consolidateInventory() {
+		Map<String, Integer> inventory1 = new HashMap<>();
+		inventory1.put("SKU1", 100);
+		inventory1.put("SKU2", 53);
+		inventory1.put("SKU3", 44);
+	
+		Map<String, Integer> inventory2 = new HashMap<>();
+		inventory2.put("SKU2", 11);
+		inventory2.put("SKU4", 5);
+	
+		Map<String, Integer> output = exercises.consolidateInventory(inventory1, inventory2);
+		assertThat("consolidateInventory({\"SKU1\": 100, \"SKU2\": 53, \"SKU3\": 44} {\"SKU2\":11, \"SKU4\": 5})",
+				output.size(), equalTo(4));
+		assertThat("consolidateInventory({\"SKU1\": 100, \"SKU2\": 53, \"SKU3\": 44} {\"SKU2\":11, \"SKU4\": 5})",
+				output, hasEntry("SKU1", 100));
+		assertThat("consolidateInventory({\"SKU1\": 100, \"SKU2\": 53, \"SKU3\": 44} {\"SKU2\":11, \"SKU4\": 5})",
+				output, hasEntry("SKU2", 64));
+		assertThat("consolidateInventory({\"SKU1\": 100, \"SKU2\": 53, \"SKU3\": 44} {\"SKU2\":11, \"SKU4\": 5})",
+				output, hasEntry("SKU3", 44));
+		assertThat("consolidateInventory({\"SKU1\": 100, \"SKU2\": 53, \"SKU3\": 44} {\"SKU2\":11, \"SKU4\": 5})",
+				output, hasEntry("SKU4", 5));
+	
+		
+		inventory1 = new HashMap<>();
+		inventory1.put("SKU_4", 0);
+		inventory1.put("SKU_23", 53);
+		inventory1.put("SKU_39", 66);
+		inventory1.put("SKU_X", 8);
+	
+		inventory2 = new HashMap<>();
+		inventory2.put("SKU_4", 68);
+		inventory2.put("SKU_23", 33);
+		inventory2.put("SKU_50", 444);
+		inventory2.put("SKU_X", 1);
+	
+		output = exercises.consolidateInventory(inventory1, inventory2);
+		assertThat("consolidateInventory({\"SKU_4\": 0, \"SKU_23\": 53, \"SKU_39\": 66, \"SKU_X\": 8} {\"SKU_4\":68, \"SKU_23\": 33, \"SKU_50\": 444, \"SKU_X\": 1})",
+				output.size(), equalTo(5));
+		assertThat("consolidateInventory({\"SKU_4\": 0, \"SKU_23\": 53, \"SKU_39\": 66, \"SKU_X\": 8} {\"SKU_4\":68, \"SKU_23\": 33, \"SKU_50\": 444, \"SKU_X\": 1})",
+				output, hasEntry("SKU_4", 68));
+		assertThat("consolidateInventory({\"SKU_4\": 0, \"SKU_23\": 53, \"SKU_39\": 66, \"SKU_X\": 8} {\"SKU_4\":68, \"SKU_23\": 33, \"SKU_50\": 444, \"SKU_X\": 1})",
+				output, hasEntry("SKU_23", 86));
+		assertThat("consolidateInventory({\"SKU_4\": 0, \"SKU_23\": 53, \"SKU_39\": 66, \"SKU_X\": 8} {\"SKU_4\":68, \"SKU_23\": 33, \"SKU_50\": 444, \"SKU_X\": 1})",
+				output, hasEntry("SKU_39", 66));
+		assertThat("consolidateInventory({\"SKU_4\": 0, \"SKU_23\": 53, \"SKU_39\": 66, \"SKU_X\": 8} {\"SKU_4\":68, \"SKU_23\": 33, \"SKU_50\": 444, \"SKU_X\": 1})",
+				output, hasEntry("SKU_50", 444));
+		assertThat("consolidateInventory({\"SKU_4\": 0, \"SKU_23\": 53, \"SKU_39\": 66, \"SKU_X\": 8} {\"SKU_4\":68, \"SKU_23\": 33, \"SKU_50\": 444, \"SKU_X\": 1})",
+				output, hasEntry("SKU_X", 9));
+	
+		
+		inventory1 = new HashMap<>();
+		inventory1.put("Lorem", 11);
+		inventory1.put("Ipsum", 22);
+		inventory1.put("Dolor", 33);
+		inventory1.put("Sit", 44);
+		inventory1.put("Amet", 55);
+	
+		inventory2 = new HashMap<>();
+		//nothing
+	
+		output = exercises.consolidateInventory(inventory1, inventory2);
+		assertThat("consolidateInventory({\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55} { })",
+				output.size(), equalTo(5));
+		assertThat("consolidateInventory({\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55} { })",
+				output, hasEntry("Lorem", 11));
+		assertThat("consolidateInventory({\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55} { })",
+				output, hasEntry("Ipsum", 22));
+		assertThat("consolidateInventory({\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55} { })",
+				output, hasEntry("Dolor", 33));
+		assertThat("consolidateInventory({\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55} { })",
+				output, hasEntry("Sit", 44));
+		assertThat("consolidateInventory({\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55} { })",
+				output, hasEntry("Amet", 55));
+		
+		
+		inventory1 = new HashMap<>();
+		//nothing
+	
+		inventory2 = new HashMap<>();
+		inventory2.put("Lorem", 11);
+		inventory2.put("Ipsum", 22);
+		inventory2.put("Dolor", 33);
+		inventory2.put("Sit", 44);
+		inventory2.put("Amet", 55);
+	
+		output = exercises.consolidateInventory(inventory1, inventory2);
+		assertThat("consolidateInventory({ } {\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55})",
+				output.size(), equalTo(5));
+		assertThat("consolidateInventory({ } {\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55})",
+				output, hasEntry("Lorem", 11));
+		assertThat("consolidateInventory({ } {\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55})",
+				output, hasEntry("Ipsum", 22));
+		assertThat("consolidateInventory({ } {\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55})",
+				output, hasEntry("Dolor", 33));
+		assertThat("consolidateInventory({ } {\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55})",
+				output, hasEntry("Sit", 44));
+		assertThat("consolidateInventory({ } {\"Lorem\": 11, \"Ipsum\": 22, \"Dolor\": 33, \"Sit\": 44, \"Amet\": 55})",
+				output, hasEntry("Amet", 55));
+	}
+
 }

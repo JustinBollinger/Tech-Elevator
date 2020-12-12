@@ -52,6 +52,14 @@ public class Exercises
 
 	public String animalGroupName(String animalName)
 	{
+		
+		
+		if(animalName == null || animalName == "")
+		{
+			return "unknown";
+		}
+		
+		
 		// create animalMap and add all above searches
 		Map<String, String> animalMap = new HashMap<String, String>();
 		
@@ -67,22 +75,13 @@ public class Exercises
 		animalMap.put("dog", "Pack");
 		animalMap.put("crocodile", "Float");
 		
-		
-		String groupName = animalMap.get(animalName.toLowerCase());
-		
-		for(Map.Entry<String, String> animalNames: animalMap.entrySet())
-		{
+		String lowerCaseAnimalNames = animalName.toLowerCase();			
 			
-			if(animalName == null)
+			if(animalMap.get(lowerCaseAnimalNames) == null)
 			{
-				animalName = "unknown";
+				return "unknown";
 			}
-			if(animalName == "")
-			{
-				animalName = "unknown";
-			}
-		}
-		return groupName;
+		return animalMap.get(lowerCaseAnimalNames);
 		
 	}
 
@@ -93,26 +92,28 @@ public class Exercises
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	/*
-	 * Given an String item number (a.k.a. SKU), return the discount percentage if
-	 * the item is on sale. If the item is not on sale, return 0.00.
+	 * Given a String item number (a.k.a. SKU),
+	 * return the discount percentage if the item is on sale.
+	 * If the item is not on sale, return 0.00.
 	 *
 	 * If the item number is empty or null, return 0.00.
 	 *
-	 * "KITCHEN4001" -> 0.20 "GARAGE1070" -> 0.15 "LIVINGROOM" -> 0.10 "KITCHEN6073"
-	 * -> 0.40 "BEDROOM3434" -> 0.60 "BATH0073" -> 0.15
+	 * "KITCHEN4001" -> 0.20
+	 * "GARAGE1070" -> 0.15
+	 * "LIVINGROOM" -> 0.10
+	 * "KITCHEN6073" -> 0.40
+	 * "BEDROOM3434" -> 0.60
+	 * "BATH0073" -> 0.15
 	 *
-	 * The item number should be case insensitive so "kitchen4001", "Kitchen4001",
-	 * and "KITCHEN4001" should all return 0.20.
+	 * The item number should be case insensitive
+	 * so "kitchen4001", "Kitchen4001", and "KITCHEN4001"
+	 * should all return 0.20.
 	 *
-	 * isItOnSale("kitchen4001") → 0.20 isItOnSale("") → 0.00
-	 * isItOnSale("GARAGE1070") → 0.15 isItOnSale("dungeon9999") → 0.00
+	 * isItOnSale("kitchen4001") -> 0.20
+	 * isItOnSale("") -> 0.00
+	 * isItOnSale("GARAGE1070") -> 0.15
+	 * isItOnSale("dungeon9999") -> 0.00
 	 *
 	 */
 	
@@ -120,7 +121,27 @@ public class Exercises
 	
 	public double isItOnSale(String itemNumber)
 	{
-		return -1.0;
+		if(itemNumber == null || itemNumber == "")
+		{
+			return 0.00;
+		}
+		
+		Map<String, Double> isItOnSale = new HashMap<String,Double>();
+		
+		isItOnSale.put("kitchen4001", 0.20);
+		isItOnSale.put("garage1070", 0.15);
+		isItOnSale.put("livingroom", 0.10);
+		isItOnSale.put("kitchen6073", 0.40);
+		isItOnSale.put("bedroom3434", 0.60);
+		isItOnSale.put("bath0073", 0.15);
+		
+		String noCaseSKU = itemNumber.toLowerCase();
+		
+		if(isItOnSale.get(noCaseSKU) == null)
+		{
+			return 0.00;
+		}
+		return isItOnSale.get(noCaseSKU);
 	}
 
 	
@@ -128,21 +149,47 @@ public class Exercises
 	
 	
 	/*
-	 * Modify and return the given Map as follows: if "Peter" has more than 0 money,
-	 * transfer half of it to "Paul", but only if Paul has less than $10s.
+	 * Modify and return the given Map as follows:
+	 * if "Peter" has more than 0 money,
+	 * transfer half of it to "Paul",
+	 * but only if Paul has less than $10.00.
 	 *
-	 * Note, monetary amounts are specified in cents: penny=1, nickel=5, ... $1=100,
-	 * ... $10=1000, ...
+	 * Note, monetary amounts are specified in cents:
+	 * penny=1, nickel=5, ... $1=100, ... $10=1000, ...
 	 *
-	 * robPeterToPayPaul({"Peter": 2000, "Paul": 99}) → {"Peter": 1000, "Paul":
-	 * 1099} robPeterToPayPaul({"Peter": 2000, "Paul": 30000}) → {"Peter": 2000,
-	 * "Paul": 30000}
+	 * robPeterToPayPaul({"Peter": 2000, "Paul": 99}) 
+	 * 					-> {"Peter": 1000, "Paul": 1099}
+	 * 
+	 * robPeterToPayPaul({"Peter": 2000, "Paul": 30000})
+	 * 					 -> {"Peter": 2000, "Paul": 30000}
 	 *
 	 */
 	
 	public Map<String, Integer> robPeterToPayPaul(Map<String, Integer> peterPaul)
 	{
-		return null;
+		int petersMoney = peterPaul.get("Peter");
+		int paulsMoney = peterPaul.get("Paul");
+		
+		boolean paulNeedsMoney = paulsMoney < 1000;
+		
+		//1. Does Paul need money?
+		if(paulNeedsMoney)
+		{
+			//2. Yes? Then, get half of Peter's wallet
+			int halfPeter = petersMoney / 2;
+			
+			
+			
+			//3. Update both wallets
+			paulsMoney += halfPeter;
+			petersMoney -= halfPeter;
+			
+			peterPaul.put("Peter", petersMoney);
+			peterPaul.put("Paul", paulsMoney);
+		}
+		
+		
+		return peterPaul;
 	}
 
 	
@@ -151,20 +198,51 @@ public class Exercises
 	
 	
 	/*
-	 * Modify and return the given Map as follows: if "Peter" has $50 or more, AND
-	 * "Paul" has $100 or more, then create a new "PeterPaulPartnership" worth a
+	 * Modify and return the given Map as follows:
+	 * if "Peter" has $50 or more, AND "Paul" has $100 or more,
+	 * then create a new "PeterPaulPartnership" worth a
 	 * combined contribution of a quarter of each partner's current worth.
 	 *
-	 * peterPaulPartnership({"Peter": 50000, "Paul": 100000}) → {"Peter": 37500,
-	 * "Paul": 75000, "PeterPaulPartnership": 37500} peterPaulPartnership({"Peter":
-	 * 3333, "Paul": 1234567890}) → {"Peter": 3333, "Paul": 1234567890}
+	 * peterPaulPartnership({"Peter": 50000, "Paul": 100000}) ->
+	 * {"Peter": 37500, "Paul": 75000, "PeterPaulPartnership": 37500}
+	 * 
+	 * peterPaulPartnership({"Peter": 3333, "Paul": 1234567890}) ->
+	 * {"Peter": 3333, "Paul": 1234567890}
 	 *
 	 */
+	
 	public Map<String, Integer> peterPaulPartnership(Map<String, Integer> peterPaul)
 	{
-		return null;
+		int petersNetWorth = peterPaul.get("Peter");
+		int paulsNetWorth = peterPaul.get("Paul");
+		
+		boolean peterWillContribute = petersNetWorth >= 5000;
+		boolean paulWillContribute = paulsNetWorth >= 10000;
+		
+		if(peterWillContribute && paulWillContribute)
+		{
+			int petersContribution = petersNetWorth / 4;
+			int paulsContribution = paulsNetWorth / 4;
+			int combinedContribution = (petersContribution + paulsContribution);
+			
+			int petersLesserWorth = petersNetWorth - petersContribution;
+			int paulsLesserWorth = paulsNetWorth - paulsContribution;
+			
+			peterPaul.put("Peter", petersLesserWorth);
+			peterPaul.put("Paul", paulsLesserWorth);
+			peterPaul.put("PeterPaulPartnership", combinedContribution);
+			
+		}
+		
+		
+		return peterPaul;
 	}
 
+	
+	
+	
+	
+	
 	/*
 	 * Given an array of non-empty Strings, return a Map<String, String> where for
 	 * every different String in the array, there is a key of its first character
@@ -177,6 +255,10 @@ public class Exercises
 	 */
 	public Map<String, String> beginningAndEnding(String[] words)
 	{
+		
+		
+		
+		
 		return null;
 	}
 
