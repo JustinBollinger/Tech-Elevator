@@ -244,112 +244,272 @@ public class Exercises
 	
 	
 	/*
-	 * Given an array of non-empty Strings, return a Map<String, String> where for
-	 * every different String in the array, there is a key of its first character
+	 * Given an array of non-empty Strings,
+	 * return a Map<String, String> where
+	 * for every different String in the array,
+	 * there is a key of its first character
 	 * with the value of its last character.
 	 *
-	 * beginningAndEnding(["code", "bug"]) → {"b": "g", "c": "e"}
-	 * beginningAndEnding(["man", "moon", "main"]) → {"m": "n"}
-	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) → {"g": "d",
-	 * "m": "t", "n": "t"}
+	 * beginningAndEnding(["code", "bug"]) -> {"b": "g", "c": "e"}
+	 * beginningAndEnding(["man", "moon", "main"]) -> {"m": "n"}
+	 * beginningAndEnding(["muddy", "good", "moat", "good", "night"]) -> {"m": "y", "g": "d", "m": "t", "n": "t"}
 	 */
+	
 	public Map<String, String> beginningAndEnding(String[] words)
 	{
+		// Declare a Map
+		Map<String, String> wordsMap = new HashMap<String, String>();
+		
+		for (String wordsForMap : words)
+		{
+			wordsMap.put(wordsForMap.substring(0, 1), wordsForMap.substring(wordsForMap.length() -1));
+		}
 		
 		
-		
-		
-		return null;
+		return wordsMap;
+		// have to return a Map
 	}
 
+	
+	
+
+	
+	
 	/*
-	 * Given an array of Strings, return a Map<String, Integer> with a key for each
-	 * different String, with the value the number of times that String appears in
-	 * the array.
+	 * Given an array of Strings,
+	 * 
+	 * return a Map<String, Integer> with a key for each different String,
+	 * with the value the number of times that String appears in the array.
 	 *
 	 * ** A CLASSIC **
 	 *
-	 * wordCount(["ba", "ba", "black", "sheep"]) → {"ba" : 2, "black": 1, "sheep":
-	 * 1 } wordCount(["a", "b", "a", "c", "b"]) → {"b": 2, "c": 1, "a": 2}
-	 * wordCount([]) → {} wordCount(["c", "b", "a"]) → {"b": 1, "c": 1, "a": 1}
+	 * wordCount(["ba", "ba", "black", "sheep"]) -> {"ba" : 2, "black": 1, "sheep": 1 }
+	 * wordCount(["a", "b", "a", "c", "b"]) -> {"b": 2, "c": 1, "a": 2}
+	 * wordCount([]) -> {}
+	 * wordCount(["c", "b", "a"]) -> {"b": 1, "c": 1, "a": 1}
 	 *
 	 */
+	
+	
 	public Map<String, Integer> wordCount(String[] words)
 	{
-		return null;
+		//create HashMap to return
+		Map<String, Integer> wordsMap = new HashMap<String, Integer>();
+		
+		//create a count variable for when the value is in the hashmap
+		int count = 0;
+		
+		//loop through the array and determine if String exists in the hashmap
+		for (String wordsToCount : words)
+		{
+			if(!wordsMap.containsKey(wordsToCount))
+			{
+				wordsMap.put(wordsToCount, 1);
+			}
+			else 
+			{
+				count = wordsMap.get(wordsToCount) + 1;
+				wordsMap.put(wordsToCount, count);
+			}
+		}
+		// if it doesn't, add it and set the count to 1. If it does exist, set count to ++.
+		
+		
+		return wordsMap;
 	}
 
+	
+	
+	
 	/*
-	 * Given an array of int values, return a Map<Integer, Integer> with a key for
-	 * each int, with the value the number of times that int appears in the array.
+	 * Given an array of int values,
+	 * 
+	 * return a Map<Integer, Integer> with a key for each int,
+	 * with the value the number of times that int appears in the array.
 	 *
 	 * ** The lesser known cousin of the the classic wordCount **
 	 *
-	 * intCount([1, 99, 63, 1, 55, 77, 63, 99, 63, 44]) → {1: 2, 44: 1, 55: 1, 63:
-	 * 3, 77: 1, 99:2} intCount([107, 33, 107, 33, 33, 33, 106, 107]) → {33: 4,
-	 * 106: 1, 107: 3} intCount([]) → {}
+	 * intCount([1, 99, 63, 1, 55, 77, 63, 99, 63, 44]) -> {1: 2, 44: 1, 55: 1, 63: 3, 77: 1, 99:2}
+	 * intCount([107, 33, 107, 33, 33, 33, 106, 107]) -> {33: 4, 106: 1, 107: 3}
+	 * intCount([]) -> {}
 	 *
 	 */
+	
 	public Map<Integer, Integer> integerCount(int[] ints)
 	{
-		return null;
+		Map<Integer, Integer> myIntsMap = new HashMap<Integer, Integer>();
+		
+		int count = 0;
+		
+		for (int intPassed : ints)
+		{
+			if (!myIntsMap.containsKey(intPassed))
+			{
+				myIntsMap.put(intPassed, 1);
+			}
+			else
+			{
+				count = myIntsMap.get(intPassed) + 1;
+				myIntsMap.put(intPassed, count);
+			}
+		}
+		
+		return myIntsMap;
 	}
 
+	
+	
+	
+	
+	
 	/*
-	 * Given an array of Strings, return a Map<String, Boolean> where each different
-	 * String is a key and value is true only if that String appears 2 or more times
+	 * Given an array of Strings,
+	 * 
+	 * return a Map<String, Boolean>
+	 * where each different String is a key and value is true only if that String appears 2 or more times
 	 * in the array.
 	 *
-	 * wordMultiple(["a", "b", "a", "c", "b"]) → {"b": true, "c": false, "a":
-	 * true} wordMultiple(["c", "b", "a"]) → {"b": false, "c": false, "a": false}
-	 * wordMultiple(["c", "c", "c", "c"]) → {"c": true}
+	 * wordMultiple(["a", "b", "a", "c", "b"]) -> {"b": true, "c": false, "a": true}
+	 * wordMultiple(["c", "b", "a"]) -> {"b": false, "c": false, "a": false}
+	 * wordMultiple(["c", "c", "c", "c"]) -> {"c": true}
 	 *
 	 */
 	public Map<String, Boolean> wordMultiple(String[] words)
 	{
-		return null;
+		Map<String, Boolean> myWordsMap = new HashMap<String, Boolean>();
+		Map<String, Integer> storageForCount = new HashMap<String, Integer>();
+		
+		for (String wordsPassed: words)
+		{
+			if(storageForCount.containsKey(wordsPassed))
+			{
+				int count = storageForCount.get(wordsPassed);
+				count++;
+				
+				if(count > 1)
+				{
+					myWordsMap.put(wordsPassed, true);
+				}
+				else
+				{
+					myWordsMap.put(wordsPassed, false);
+				}
+				
+			} 
+			else
+			{
+				storageForCount.put(wordsPassed, 1);
+				myWordsMap.put(wordsPassed, false);
+			}
+		
+		}
+		
+		
+		return myWordsMap;
+		
+	
+	
 	}
 
+	
+	
+	
+	
 	/*
 	 * Given two Maps, Map<String, Integer>, merge the two into a new Map,
-	 * Map<String, Integer> where keys in Map2, and their int values, are added to
-	 * the int values of matching keys in Map1. Return the new Map.
+	 * Map<String, Integer> where keys in Map2, and their int values,
+	 * are added to the int values of matching keys in Map1.
+	 * 
+	 * Return the new Map.
 	 *
 	 * Unmatched keys and their int values in Map2 are simply added to Map1.
 	 *
-	 * consolidateInventory({"SKU1": 100, "SKU2": 53, "SKU3": 44} {"SKU2":11,
-	 * "SKU4": 5}) → {"SKU1": 100, "SKU2": 64, "SKU3": 44, "SKU4": 5}
+	 * consolidateInventory({"SKU1": 100, "SKU2": 53, "SKU3": 44} {"SKU2":11, "SKU4": 5})
+	 * 						-> {"SKU1": 100, "SKU2": 64, "SKU3": 44, "SKU4": 5}
 	 *
 	 */
+	
 	public Map<String, Integer> consolidateInventory(Map<String, Integer> mainWarehouse,
 			Map<String, Integer> remoteWarehouse)
 	{
-		return null;
+		Map<String, Integer> mergedMaps = new HashMap<String, Integer>();
+		
+		for (String mapOne : mainWarehouse.keySet())
+		{
+			if(remoteWarehouse.containsKey(mapOne))
+			{
+				mergedMaps.put(mapOne, (mainWarehouse.get(mapOne) + remoteWarehouse.get(mapOne)));
+			}
+			else
+			{
+				mergedMaps.put(mapOne, mainWarehouse.get(mapOne));
+			}
+		}
+		for (String mapTwo : remoteWarehouse.keySet())
+		{
+			if (!(mainWarehouse.containsKey(mapTwo)))
+			{
+				mergedMaps.put(mapTwo, remoteWarehouse.get(mapTwo));
+			}
+		}
+		
+		
+		return mergedMaps;
 	}
 
+	
+	
+	
+	
+	
 	/*
 	 * Just when you thought it was safe to get back in the water ---
 	 * last2Revisited!!!!
 	 *
-	 * Given an array of Strings, for each String, the count of the number of times
-	 * that a subString length 2 appears in the String and also as the last 2 chars
-	 * of the String, so "hixxxhi" yields 1.
+	 * Given an array of Strings,
+	 * for each String, the count of the number of times
+	 * that a substring length 2 appears in the String
+	 * and also as the last 2 chars of the String,
+	 * 
+	 * so "hixxxhi" yields 1.
 	 *
-	 * We don't count the end subString, but the subString may overlap a prior
-	 * position by one. For instance, "xxxx" has a count of 2, one pair at position
-	 * 0, and the second at position 1. The third pair at position 2 is the end
-	 * subString, which we don't count.
+	 * We don't count the end substring,
+	 * but the substring may overlap a prior position by one.
+	 * For instance, "xxxx" has a count of 2, one pair at position 0,
+	 * and the second at position 1.
+	 * The third pair at position 2 is the end substring, which we don't count.
 	 *
 	 * Return Map<String, Integer>, where the key is String from the array, and its
 	 * last2 count.
 	 *
-	 * last2Revisited(["hixxhi", "xaxxaxaxx", "axxxaaxx"]) → {"hixxhi": 1,
-	 * "xaxxaxaxx": 1, "axxxaaxx": 2}
+	 * last2Revisited(["hixxhi", "xaxxaxaxx", "axxxaaxx"])
+	 * -> {"hixxhi": 1, "xaxxaxaxx": 1, "axxxaaxx": 2}
 	 *
 	 */
+	
 	public Map<String, Integer> last2Revisited(String[] words)
 	{
-		return null;
+		Map<String, Integer> last2Map = new HashMap<String, Integer>();
+		
+		String lastTwoLetters;
+		
+		for(String word: words)
+		{
+			Integer count = 0;
+			
+			lastTwoLetters = word.substring(word.length() -2);
+			
+			for (int i = 0; i < word.length() -2; i++)
+			{
+				String countLast2 = word.substring(i, i+2);
+				if(countLast2.equals(lastTwoLetters))
+				{
+					count++;
+				}
+			}
+			last2Map.put(word, count);
+		}
+		return last2Map;
 	}
 
 }
