@@ -11,10 +11,28 @@ public class Bookstore {
         System.out.println();
 
         // Step Three: Test the getters and setters
-
-        // Step Five: Test the Book constructor
-
-        // Step Nine: Test the ShoppingCart class
+        Book twoCities = new Book();
+        twoCities.setTitle("A Tale of Two Cities");
+        twoCities.setAuthor("Charles Dickens");
+        twoCities.setPrice(14.99);
+        System.out.println(twoCities.bookInfo());
         
+        
+        
+        // Step Five: Test the Book constructor
+        Book threeMusketeers = new Book("The Three Musketeers", "Alexandre Dumas", 12.95);
+      
+        Book childhoodEnd = new Book("Childhood's End", "Aurthur C. Clark", 5.99);
+        
+        System.out.println(threeMusketeers.bookInfo());
+        
+        System.out.println(childhoodEnd.bookInfo());
+        
+        // Step Nine: Test the ShoppingCart class
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.add(twoCities);
+        shoppingCart.add(threeMusketeers);
+        shoppingCart.add(childhoodEnd);
+        System.out.println(shoppingCart.receipt());
     }
 }
