@@ -23,4 +23,15 @@ public class CheckingAccount extends BankAccount {
         }
         return getBalance();
     }
+
+    public int transferTo(String destinationAccount, int transferAmount)
+    {
+    	super.transferTo();
+    	
+    }
+
+
+
+
+
 }

@@ -30,7 +30,7 @@ public class Calculator
     public int clear()
     {
         answer = 0;
-        return answer
+        return answer;
     }
     
 }
