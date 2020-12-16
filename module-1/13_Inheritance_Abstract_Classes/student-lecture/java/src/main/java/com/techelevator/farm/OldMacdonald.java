@@ -1,11 +1,24 @@
 package com.techelevator.farm;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+
+import javax.print.attribute.HashAttributeSet;
 
 public class OldMacdonald
 {
+//		
+//		// List is the interface        Array List is the implementation
+//		List<Singable> farmThings = new ArrayList<Singable>();
+//		//Map is the interface            Hashmap is the implementation
+//		Map<String, String> myItems = new HashMap<String, String>();
+//	
+	
+	
+	
 	public static void main(String[] args)
 	{
 		singSong();
@@ -17,6 +30,7 @@ public class OldMacdonald
 		System.out.println("**  Old Macdonald Had a Farm  **");
 		System.out.println();
 
+		
 		List<Singable> farmThings = new ArrayList<Singable>();
 
 		farmThings.add(new Cow());
