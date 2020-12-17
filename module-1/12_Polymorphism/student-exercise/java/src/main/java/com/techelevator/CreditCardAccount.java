@@ -4,7 +4,6 @@ public class CreditCardAccount implements Accountable
 {
 	private String accountHolder;
 	private String accountNumber;
-	private int getBalance;
 	private int debt = 0;
 
 	// constructor
