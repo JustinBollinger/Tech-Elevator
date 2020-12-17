@@ -5,14 +5,13 @@ public class CreditCardAccount implements Accountable
 	private String accountHolder;
 	private String accountNumber;
 	private int getBalance;
-	private int debt;
+	private int debt = 0;
 
 	// constructor
 	public CreditCardAccount(String accountHolder, String accountNumber)
 	{
 		this.accountHolder = accountHolder;
 		this.accountNumber = accountNumber;
-		this.debt = debt;
 	}	
 	
 	public String getAccountHolder()

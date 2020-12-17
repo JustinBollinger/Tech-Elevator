@@ -1,9 +1,7 @@
 package com.techelevator;
 
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class BankCustomer implements Accountable
 {
@@ -62,5 +60,17 @@ public class BankCustomer implements Accountable
 		accounts.add(newAccount);
 	}
 	
-	
+	public boolean isVip()
+	{
+		int totalAccountsBalance = 0;
+		for (Accountable allAccounts : accounts)
+		{
+			totalAccountsBalance += allAccounts.getBalance();
+		}
+		if(totalAccountsBalance >= 25000)
+		{
+			return true;
+		}
+		return false;
+	}
 }

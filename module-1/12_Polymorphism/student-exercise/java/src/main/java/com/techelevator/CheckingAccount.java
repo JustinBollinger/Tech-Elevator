@@ -30,12 +30,5 @@ public class CheckingAccount extends BankAccount implements Accountable
 		return getBalance();
 	}
 
-//    public int transferTo(String destinationAccount, int transferAmount)
-//    {
-//    	super.transferTo();
-//    	
-//    }
-//
-//
 
 }
