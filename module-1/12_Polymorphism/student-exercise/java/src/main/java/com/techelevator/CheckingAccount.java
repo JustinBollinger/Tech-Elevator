@@ -29,6 +29,4 @@ public class CheckingAccount extends BankAccount implements Accountable
 		}
 		return getBalance();
 	}
-
-
 }
