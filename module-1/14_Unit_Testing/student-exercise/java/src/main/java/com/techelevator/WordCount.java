@@ -12,10 +12,10 @@ public class WordCount {
 	 *
 	 * ** A CLASSIC **
 	 *
-	 * getCount(["ba", "ba", "black", "sheep"]) → {"ba" : 2, "black": 1, "sheep": 1 }
-	 * getCount(["a", "b", "a", "c", "b"]) → {"a": 2, "b": 2, "c": 1}
-	 * getCount([]) → {}
-	 * getCount(["c", "b", "a"]) → {"c": 1, "b": 1, "a": 1}
+	 * getCount(["ba", "ba", "black", "sheep"]) -> {"ba" : 2, "black": 1, "sheep": 1 }
+	 * getCount(["a", "b", "a", "c", "b"]) -> {"a": 2, "b": 2, "c": 1}
+	 * getCount([]) -> {}
+	 * getCount(["c", "b", "a"]) -> {"c": 1, "b": 1, "a": 1}
 	 *
 	 */
 	public Map<String, Integer> getCount(String[] words) {

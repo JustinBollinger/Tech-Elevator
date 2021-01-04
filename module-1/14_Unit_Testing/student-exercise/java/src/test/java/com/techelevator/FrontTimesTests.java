@@ -67,7 +67,7 @@ public class FrontTimesTests
 		String actual = repeatString.generateString(str, n);
 		
 		//assert
-		Assert.assertNull("str is null", expected);
+		Assert.assertNull("str is null", null);
 		
 		
 	}
