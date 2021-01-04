@@ -7,40 +7,39 @@ public class FruitTree
 	// these variables belong to this class.
 	private String typeOfFruit;
 	private int piecesOfFruitLeft;
-	
-	
-	// not sure what to do with startingPiecesOfFruit in ctor, if anything,
-	// since it was not established as an instance variable
-	public FruitTree(String typeOfFruit, int startingPiecesOfFruit)
+
+	// constructor
+	public FruitTree(String newTypeOfFruit, int startingPiecesOfFruit)
 	{
-		this.typeOfFruit = typeOfFruit;
+		typeOfFruit = newTypeOfFruit;
+		piecesOfFruitLeft = startingPiecesOfFruit;
+
 	}
-	
-	public String gettypeOfFruit()
+
+	// getters
+	public String getTypeOfFruit()
 	{
 		return typeOfFruit;
 	}
-	
+
 	public int getPiecesOfFruitLeft()
 	{
 		return piecesOfFruitLeft;
 	}
-	
-	
-	// logic not right
+
+	// method
 	public boolean pickFruit(int numberOfPiecesToRemove)
-	{ 
+	{
 		if (piecesOfFruitLeft > 0)
 		{
-			piecesOfFruitLeft -=  numberOfPiecesToRemove;
+			piecesOfFruitLeft -= numberOfPiecesToRemove;
 			return true;
 		}
-		if(piecesOfFruitLeft < numberOfPiecesToRemove)
+		if (piecesOfFruitLeft < numberOfPiecesToRemove)
 		{
 			return false;
 		}
 		return false;
 	}
-	
-	
+
 }
