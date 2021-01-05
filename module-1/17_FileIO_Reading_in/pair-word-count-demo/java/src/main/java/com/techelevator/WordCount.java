@@ -58,7 +58,7 @@ public class WordCount
 //				String[] words = line.split("\\s+"); // this splits on spaces - but still counts blank lines
 //				wordCount += words.length;
 //			}
-//			System.out.println("Word Count from lines: " + wordCount);
+//		System.out.println("Word Count from lines: " + wordCount);
 			
 			
 			wordCount = 0;

@@ -1,8 +1,10 @@
 package com.techelevator;
 
-public class FizzWriter {
+public class FizzWriter
+{
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 
 	}
 

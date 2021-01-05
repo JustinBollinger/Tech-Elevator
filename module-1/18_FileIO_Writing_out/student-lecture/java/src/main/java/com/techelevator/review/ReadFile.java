@@ -43,6 +43,7 @@ public class ReadFile
             while(fileStream.hasNext())
             {
                 String word = fileStream.next();
+                System.out.println(word);
                 // do something with the file
             }
 
