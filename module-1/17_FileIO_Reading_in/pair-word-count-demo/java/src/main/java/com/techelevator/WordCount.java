@@ -54,7 +54,7 @@ public class WordCount
 //			while(fileScanner.hasNextLine())
 //			{
 //				line = fileScanner.nextLine();
-////				String[] words = line.split(" ");
+//				String[] words = line.split(" ");
 //				String[] words = line.split("\\s+"); // this splits on spaces - but still counts blank lines
 //				wordCount += words.length;
 //			}
@@ -96,7 +96,7 @@ public class WordCount
 				line = fileScanner.nextLine();
 				// see if the searchTerm is in this line
 				// if yes
-					// print the line number and the line
+				// print the line number and the line
 			}
 		}
 		catch(Exception ex)
