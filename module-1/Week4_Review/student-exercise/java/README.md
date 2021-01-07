@@ -35,6 +35,7 @@ Write code in the `Store.java` class to manage the flow of the application. In o
   * Add Product to Cart
   * View Cart
   * Check Out
+  * Quit
 * Add Product to Cart Page
   * (display product inventory)
   * *Options*
