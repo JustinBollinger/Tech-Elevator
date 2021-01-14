@@ -194,14 +194,10 @@ LIMIT 10;
 -- (NOTE: Keep in mind that an employee may work at multiple stores.)
 -- (Store 1 has 7928 total rentals and Store 2 has 8121 total rentals)
 
---- !!! COME BACK TO THIS ONE !!! --
-
--- will need STORE, ADDRESS, RENTAL, PAYMENT(, CUSTOMER)
-
 SELECT s.store_id
         , a.address AS street_address
         , COUNT(rental_date) AS number_of_rentals
-        , SUM(p.amount) AS total_amount_of_sales
+        , SUM(p.amount) AS total_payments
         , (SUM(p.amount) / COUNT(rental_date)) AS avg_sale_of_store
 FROM rental AS r
 INNER JOIN inventory AS i
