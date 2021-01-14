@@ -129,6 +129,8 @@ WHERE city.name IS NULL;
 
 -- Back to the "dvdstore" database...
 
+-- Gathers a list of all first names used by actors and customers
+
 SELECT first_name
         , last_name
 FROM actor
@@ -141,7 +143,9 @@ SELECT first_name
 FROM customer;
 
 
--- Gathers a list of all first names used by actors and customers
+-- By default removes duplicates
+
+-- Gather the list, but this time note the source table with 'A' for actor and 'C' for customer
 
 SELECT first_name
         , last_name
@@ -156,8 +160,3 @@ SELECT first_name
 FROM customer
 ORDER BY last_name
         , first_name; -- can ONLY use ORDER BY at the end of a union. Can't put it before it.
-
-
--- By default removes duplicates
-
--- Gather the list, but this time note the source table with 'A' for actor and 'C' for customer
