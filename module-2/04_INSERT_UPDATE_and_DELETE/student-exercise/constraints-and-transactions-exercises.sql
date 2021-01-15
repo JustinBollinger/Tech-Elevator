@@ -218,6 +218,13 @@ SELECT COUNT(film_id)
 FROM inventory
 GROUP BY store_id;
 
+-- vvv Also legal vvv --
+-- INSERT INTO inventory -- This way is good for if you have many stores.
+-- (film_id, store_id)
+-- SELECT 1001
+--        , store_id
+-- FROM store;
+
 
 -- 8. The Feds have stepped in and have impounded all copies of the pirated film,
 -- "Euclidean PI". The film has been seized from all stores, and needs to be
