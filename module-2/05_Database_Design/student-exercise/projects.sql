@@ -3,7 +3,7 @@
 -- DROP database, table
 -- ALTER table
 
--- connected to the POSTGRES database when you are creating another db
+-- !! make sure you are connected to the POSTGRES database when you are creating another db
 
 -- kill and db locks
 SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'projects';
@@ -93,3 +93,4 @@ CHECK
 
 
 -- 4. populate the tables
+
