@@ -85,7 +85,7 @@ ALTER TABLE sale_line_item
 ADD CONSTRAINT ck_sale_line_item_price
 CHECK (price > 0);
 
-ALTER TABLE 
+ALTER TABLE  
 ADD CONSTRAINT 
 CHECK 
 

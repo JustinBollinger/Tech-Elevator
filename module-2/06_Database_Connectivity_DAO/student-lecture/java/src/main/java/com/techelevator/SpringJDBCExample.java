@@ -13,16 +13,19 @@ public class SpringJDBCExample {
 		
 		/* This datasource will be used for creating connections to the database.
 		 * Below, we provide the information required to make database connections */
+		// 1. create data source
 		BasicDataSource dvdstoreDataSource = new BasicDataSource();
 		dvdstoreDataSource.setUrl("jdbc:postgresql://localhost:5432/dvdstore");
 		dvdstoreDataSource.setUsername("postgres");
 		dvdstoreDataSource.setPassword("postgres1");
 		
 		/* The JdbcTemplate is the main interface we use to interact with databases using
-		 * Spring JDBC. */
+		 * Spring JDBC.
+		 * JdbcTemplate manages my connection and my statements for me. */
+		// 2.  manage connection
 		JdbcTemplate dvdstoreJdbcTemplate = new JdbcTemplate(dvdstoreDataSource);
 		
-		
+		// 3. define your query
 		/* The JdbcTemplate can be used to execute parameterized SQL statements */
 		String sqlFilmsByCategory =  "SELECT film.title, film.release_year "+
 									 "FROM film JOIN film_category ON film.film_id = film_category.film_id "+
@@ -32,6 +35,7 @@ public class SpringJDBCExample {
 		/* The first parameter to the "queryForRowSet" method is a String containing a parameterized SQL statement
 		 * Any following parameters are used to replace query placeholders (i.e. '?') in the order in which they appear */
 		String category = "Comedy";
+		//4. execute the query - queryForRowSet - if SELECT
 		SqlRowSet results = dvdstoreJdbcTemplate.queryForRowSet(sqlFilmsByCategory, category);
 		
 		System.out.println(category+" Films:");
@@ -41,10 +45,14 @@ public class SpringJDBCExample {
 			System.out.println(filmTitle+" ("+releaseYear+")");
 		}
 		
+		
+		
 		/* use the "update" method to run INSERT, UPDATE, and DELETE statements */
+		// 3. create the SQL statement - INSERT, UPDATE, or DELETE
 		String sqlCreateActor = "INSERT INTO actor(actor_id, first_name, last_name) "+
 								"VALUES (?, ?, ?)";
 		
+		// 4. update() - when modifying data
 		dvdstoreJdbcTemplate.update(sqlCreateActor, 1000, "Craig", "Castelaz");
 		
 		/* The next example makes use of the world database, so we need a new 

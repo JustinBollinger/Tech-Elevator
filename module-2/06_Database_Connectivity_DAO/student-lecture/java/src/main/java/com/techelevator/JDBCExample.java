@@ -12,26 +12,40 @@ public class JDBCExample {
 
 	public static void main(String[] args) throws SQLException {
 		
-		/* This datasource will be used for creating connections to the database.
+		/* This data source will be used for creating connections to the database.
 		 * Below, we provide the information required to make database connections */
+		
+		// 1. must define a data source
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setUrl("jdbc:postgresql://localhost:5432/dvdstore");
 		dataSource.setUsername("postgres");
 		dataSource.setPassword("postgres1");
 		
+		
+		// 2. use the data source to create a connection
 		Connection conn = dataSource.getConnection();
 		
-		/* Create a Statement object so that we can execute a SQL Query */
+		//  3. create a Statement object so that we can execute a SQL Query
 		Statement stmt = conn.createStatement();
 		
-		/* Execute a SQL query and return the results */
-		String sqlActionFilmsReleaseIn2006 = "SELECT film.title, film.release_year " +
-											 "FROM film JOIN film_category ON film.film_id = film_category.film_id " +
-											 "JOIN category ON category.category_id = film_category.category_id " +
-											 "WHERE film.release_year = 2006 " +
-											 "AND category.name = 'Action'";
+		// 4. write your query - Execute a SQL query and return the results
+		// write this SELECT statement IN DB VISUALIZER FIRST! Then you can
+		// just copy+paste it directly into your code.'
+		// **!! Make sure you include the postgres semicolon as part of the query!
+		// **!! Run the risk of failure without both the postgres AND Java semicolons.
+		String sqlActionFilmsReleaseIn2006 = "SELECT film.title"
+											+ "		, film.release_year "
+											 + " FROM film "
+											 + " JOIN film_category "
+											 + "	ON film.film_id = film_category.film_id "
+											 + " JOIN category"
+											 + "	ON category.category_id = film_category.category_id "
+											 + " WHERE film.release_year = 2006 "
+											 + " AND category.name = 'Action';";
 		
+		// 5. execute the query
 		ResultSet results = stmt.executeQuery(sqlActionFilmsReleaseIn2006);
+		
 		
 		/* Iterate over the results and display each one */
 		System.out.println("Film Title\t\t\tRelease Year");
@@ -41,7 +55,10 @@ public class JDBCExample {
 			System.out.println(title+"\t\t\t"+releaseYear);
 		}
 		
-		/* The next query example takes a parameter (i.e. is dynamic) */
+		
+		
+		// The next query example takes a parameter (i.e. is dynamic)
+		// Take note of the single quotes included throughout the query below!
 		String firstName = "Nick";
 		String lastName = "Stallone";
 		//String lastName = "O'Malley";     // This is an exmample of non-malicious user input that will cause the query to break
@@ -60,7 +77,7 @@ public class JDBCExample {
 		}
 		
 		/* The solution to the problem of building dynamic SQL statements is to use a PreparedStatement */
-		
+		// A prepared statement protects us from potential hacking.
 		/* a parameterized SQL statement uses the '?' character as a placeholder for dynamic parameters */
 		String sqlMoviesByActorParameterized = "SELECT film.title "+
 				  "FROM film join film_actor on film.film_id = film_actor.film_id "+
