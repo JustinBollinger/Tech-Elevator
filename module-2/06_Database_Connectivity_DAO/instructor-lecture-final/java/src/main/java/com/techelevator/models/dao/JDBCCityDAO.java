@@ -32,16 +32,28 @@ public class JDBCCityDAO implements CityDAO
 		newCity.setId(getNextCityId());
 
 		// then insert the data
-		jdbcTemplate.update(sqlInsertCity, newCity.getId(), newCity.getName(), newCity.getCountryCode(),
-				newCity.getDistrict(), newCity.getPopulation());
+		jdbcTemplate.update(sqlInsertCity, 
+							newCity.getId(), 
+							newCity.getName(), 
+							newCity.getCountryCode(),
+							newCity.getDistrict(), 
+							newCity.getPopulation());
 	}
 
 	@Override
 	public City findCityById(long id)
 	{
 		City theCity = null;
-		String sqlFindCityById = "SELECT id, name, countrycode, district, population " + "FROM city " + "WHERE id = ?";
+		String sqlFindCityById = "SELECT id,"
+				+ " name,"
+				+ " countrycode,"
+				+ " district,"
+				+ " population "
+				+ "FROM city "
+				+ "WHERE id = ?";
+		
 		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlFindCityById, id);
+		
 		if (results.next())
 		{
 			theCity = mapRowToCity(results);
@@ -84,8 +96,13 @@ public class JDBCCityDAO implements CityDAO
 		List<City> cities = new ArrayList<City>();
 
 		// write your query
-		String query = "SELECT id\r\n" + "        , name\r\n" + "        , countrycode\r\n" + "        , district\r\n"
-				+ "        , population\r\n" + "FROM city\r\n" + "WHERE district = ?;";
+		String query = "SELECT id\r\n" + 
+				       " , name\r\n" + 
+				       " , countrycode\r\n" + 
+				       " , district\r\n" + 
+				       " , population\r\n" + 
+				       " FROM city\r\n" + 
+				       " WHERE district = ?;";
 
 		// execute the query
 		SqlRowSet rows = jdbcTemplate.queryForRowSet(query, district);
