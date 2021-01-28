@@ -27,11 +27,11 @@ public class AuctionController
 		{
 			return dao.searchByTitleAndPrice(title_like, currentBid_lte);
 		}
-		if (title_like != null)
+		else if (title_like != null)
 		{
 			return dao.searchByTitle(title_like);
 		}
-		if (currentBid_lte > 0)
+		else if (currentBid_lte > 0)
 		{
 			return dao.searchByPrice(currentBid_lte);
 		}
@@ -50,11 +50,4 @@ public class AuctionController
 	{
 		return dao.create(auction);
 	}
-	
-//
-//	public List<Auction> searchByTitleAndPrice(String title, double currentBid)
-//	{
-//		
-//	}
-
 }
