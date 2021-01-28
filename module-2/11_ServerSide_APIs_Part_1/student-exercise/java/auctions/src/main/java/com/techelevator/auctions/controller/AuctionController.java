@@ -36,20 +36,14 @@ public class AuctionController
 	{
 		return dao.create(auction);
 	}
-
-//	@RequestMapping(path = "/title_like", method = RequestMethod.GET)
-//	public List<Auction> list(@RequestParam(value = "title_like", defaultValue = "") String title_like)
-//	{
-//		List<Auction> auctions
-//		if ( != null)
-//		{
-//			return dao.searchByTitle(title_like);
-//		}
-//		else
-//		{
-//		return dao.list();
-//		}
-//	}
+	
+	// ** W H A T **
+	// @RequestParam looks in the queryString
+	@RequestMapping(path = "/getbytitle", method = RequestMethod.GET)
+	public List<Auction> list(@RequestParam(value = "searchTerm", defaultValue = "") String title_like)
+	{
+		return dao.searchByTitle(title_like);
+	}
 	
 //
 //	public List<Auction> searchByPrice(double currentBid_lte)
