@@ -48,5 +48,5 @@ public class AuctionController
 	public Auction create(@RequestBody Auction auction)
 	{
 		return dao.create(auction);
-	}
+	} 
 }
