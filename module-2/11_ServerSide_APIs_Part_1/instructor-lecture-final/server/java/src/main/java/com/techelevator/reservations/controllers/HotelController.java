@@ -40,11 +40,20 @@ public class HotelController
 		return hotels;
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(path = "/hotels/{id}", method = RequestMethod.GET)
 	public Hotel get(@PathVariable int id)
 	{
 		return hotelDAO.get(id);
 	}
+	
+	
 	
 	// @RequestParam looks in the queryString
 	// For a hotelId it is best practice to use a path variable
@@ -54,6 +63,17 @@ public class HotelController
 	{
 		return hotelDAO.get(id);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(path="/hotels", method = RequestMethod.POST)
 	public void insert(@RequestBody Hotel hotel)
