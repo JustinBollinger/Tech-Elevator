@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import com.techelevator.vendingmachine.exceptions.ProductNotFoundException;
 import com.techelevator.vendingmachine.models.Product;
@@ -15,13 +16,40 @@ import com.techelevator.vendingmachine.models.Product;
 @Component
 public class ProductSqlDAO implements ProductDAO
 {
+	// 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+//	public ProductSqlDAO(JdbcTemplate jdbcTemplate)
+//	{
+//		this.jdbcTemplate = jdbcTemplate;
+//	}
 	
 	public List<Product> getProducts()
 	{
 		List<Product> products = new ArrayList<Product>();
+		
+		// build the query
+		String sql = "SELECT p.product_id AS id " + 
+				"        , p.name " + 
+				"        , p.price " + 
+				"        , pt.name AS type " + 
+				"        , i.slot_id AS slot " + 
+				"        , i.quantity " + 
+				"FROM product AS p " + 
+				"INNER JOIN product_type AS pt " + 
+				"        ON p.product_type_id = pt.product_type_id " + 
+				"INNER JOIN inventory AS i " + 
+				"        ON p.product_id = i.product_id;";
+		
+		// executes the sql statement
+		SqlRowSet rows = jdbcTemplate.queryForRowSet(sql);
+		
+		while (rows.next())
+		{
+			Product product = mapRowToProduct(rows);
+			products.add(product);
+		}
 		
 		return products;
 	}
@@ -29,6 +57,26 @@ public class ProductSqlDAO implements ProductDAO
 	public Product get(int id)
 	{
 		Product product = null;
+		
+		String sql = "SELECT p.product_id AS id " + 
+				"        , p.name " + 
+				"        , p.price " + 
+				"        , pt.name AS type " + 
+				"        , i.slot_id AS slot " + 
+				"        , i.quantity " + 
+				"FROM product AS p " + 
+				"INNER JOIN product_type AS pt " + 
+				"        ON p.product_type_id = pt.product_type_id " + 
+				"INNER JOIN inventory AS i " + 
+				"        ON p.product_id = i.product_id " +
+				"WHERE p.product_id = ?;";
+		
+		SqlRowSet row = jdbcTemplate.queryForRowSet(sql, id);
+		
+		if (row.next())
+		{
+			product = mapRowToProduct(row);
+		}
 
 		return product;
 	}
