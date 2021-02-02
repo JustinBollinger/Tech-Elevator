@@ -4,8 +4,9 @@ import com.techelevator.security.model.User;
 
 import java.util.Optional;
 
-public interface UserRepository {
+public interface UserRepository
+{
 
-    Optional<User> findByUsername(String username);
+	Optional<User> findByUsername(String username);
 
 }

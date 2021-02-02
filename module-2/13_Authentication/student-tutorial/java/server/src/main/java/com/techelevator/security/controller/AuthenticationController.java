@@ -21,53 +21,60 @@ import javax.validation.Valid;
  * Controller to authenticate users.
  */
 @RestController
-public class AuthenticationController {
+public class AuthenticationController
+{
 
-    private final TokenProvider tokenProvider;
+	private final TokenProvider tokenProvider;
 
-    private final AuthenticationManagerBuilder authenticationManagerBuilder;
+	private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
-    public AuthenticationController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
-        this.tokenProvider = tokenProvider;
-        this.authenticationManagerBuilder = authenticationManagerBuilder;
-    }
+	public AuthenticationController(TokenProvider tokenProvider,
+			AuthenticationManagerBuilder authenticationManagerBuilder)
+	{
+		this.tokenProvider = tokenProvider;
+		this.authenticationManagerBuilder = authenticationManagerBuilder;
+	}
 
-    @PostMapping("/login")
-    public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDto loginDto) {
+	@PostMapping("/login")
+	public ResponseEntity<JWTToken> authorize(@Valid @RequestBody LoginDto loginDto)
+	{
 
-        UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
+		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+				loginDto.getUsername(), loginDto.getPassword());
 
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        boolean rememberMe = (loginDto.isRememberMe() == null) ? false : loginDto.isRememberMe();
-        String jwt = tokenProvider.createToken(authentication, rememberMe);
+		boolean rememberMe = (loginDto.isRememberMe() == null) ? false : loginDto.isRememberMe();
+		String jwt = tokenProvider.createToken(authentication, rememberMe);
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
-        return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
-    }
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.add(JWTFilter.AUTHORIZATION_HEADER, "Bearer " + jwt);
+		return new ResponseEntity<>(new JWTToken(jwt), httpHeaders, HttpStatus.OK);
+	}
 
-    /**
-     * Object to return as body in JWT Authentication.
-     */
-    static class JWTToken {
+	/**
+	 * Object to return as body in JWT Authentication.
+	 */
+	static class JWTToken
+	{
 
-        private String token;
+		private String token;
 
-        JWTToken(String token) {
-            this.token = token;
-        }
+		JWTToken(String token)
+		{
+			this.token = token;
+		}
 
-        @JsonProperty("token")
-        String getToken() {
-            return token;
-        }
+		@JsonProperty("token")
+		String getToken()
+		{
+			return token;
+		}
 
-        void setToken(String token) {
-            this.token = token;
-        }
-    }
+		void setToken(String token)
+		{
+			this.token = token;
+		}
+	}
 }
-

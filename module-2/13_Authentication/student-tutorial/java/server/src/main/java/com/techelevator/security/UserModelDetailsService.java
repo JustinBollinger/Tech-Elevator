@@ -19,37 +19,39 @@ import java.util.stream.Collectors;
  * Authenticate a user from the database.
  */
 @Component("userDetailsService")
-public class UserModelDetailsService implements UserDetailsService {
+public class UserModelDetailsService implements UserDetailsService
+{
 
-    private final Logger log = LoggerFactory.getLogger(UserModelDetailsService.class);
+	private final Logger log = LoggerFactory.getLogger(UserModelDetailsService.class);
 
-    private final UserRepository userRepository;
+	private final UserRepository userRepository;
 
-    public UserModelDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
+	public UserModelDetailsService(UserRepository userRepository)
+	{
+		this.userRepository = userRepository;
+	}
 
-    @Override
-    public UserDetails loadUserByUsername(final String login) {
-        log.debug("Authenticating user '{}'", login);
+	@Override
+	public UserDetails loadUserByUsername(final String login)
+	{
+		log.debug("Authenticating user '{}'", login);
 
-        String lowercaseLogin = login.toLowerCase();
-        return userRepository.findByUsername(lowercaseLogin)
-                .map(user -> createSpringSecurityUser(lowercaseLogin, user))
-                .orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found."));
+		String lowercaseLogin = login.toLowerCase();
+		return userRepository.findByUsername(lowercaseLogin).map(user -> createSpringSecurityUser(lowercaseLogin, user))
+				.orElseThrow(() -> new UsernameNotFoundException("User " + lowercaseLogin + " was not found."));
 
-    }
+	}
 
-    private org.springframework.security.core.userdetails.User createSpringSecurityUser(String lowercaseLogin, User user) {
-        if (!user.isActivated()) {
-            throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
-        }
-        List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
-                .map(authority -> new SimpleGrantedAuthority(authority.getName()))
-                .collect(Collectors.toList());
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),
-                user.getPassword(),
-                grantedAuthorities);
-    }
+	private org.springframework.security.core.userdetails.User createSpringSecurityUser(String lowercaseLogin,
+			User user)
+	{
+		if (!user.isActivated())
+		{
+			throw new UserNotActivatedException("User " + lowercaseLogin + " was not activated");
+		}
+		List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
+				.map(authority -> new SimpleGrantedAuthority(authority.getName())).collect(Collectors.toList());
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+				grantedAuthorities);
+	}
 }
-
