@@ -23,7 +23,7 @@ public class LocationService
 		Location location = null;
 		try
 		{
-			location = restTemplate.getForObject(BASE_URL + "/" + id, Location.class);
+			location = restTemplate.exchange(BASE_URL + "/" + id, HttpMethod.GET, makeAuthEntity(), Location.class).getBody();
 		}
 		catch (RestClientResponseException ex)
 		{
@@ -37,10 +37,7 @@ public class LocationService
 		Location[] locations = null;
 		try
 		{
-			HttpHeaders headers = new HttpHeaders();
-			headers.setBearerAuth(AUTH_TOKEN);
-			HttpEntity entity = new HttpEntity<>(headers);
-			locations = restTemplate.exchange(BASE_URL, HttpMethod.GET, entity, Location[].class).getBody();
+			locations = restTemplate.exchange(BASE_URL, HttpMethod.GET, makeAuthEntity(), Location[].class).getBody();
 		}
 		catch (RestClientResponseException ex)
 		{
@@ -82,7 +79,7 @@ public class LocationService
 	{
 		try
 		{
-			restTemplate.delete(BASE_URL + id);
+			restTemplate.exchange(BASE_URL + "/" + id, HttpMethod.DELETE, makeAuthEntity(), String.class);
 		}
 		catch (RestClientResponseException ex)
 		{
@@ -94,6 +91,7 @@ public class LocationService
 	{
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.setBearerAuth(AUTH_TOKEN);
 		HttpEntity<Location> entity = new HttpEntity<>(location, headers);
 		return entity;
 	}
@@ -119,6 +117,14 @@ public class LocationService
 		}
 		return new Location(Integer.parseInt(parsed[0].trim()), parsed[1].trim(), parsed[2].trim(), parsed[3].trim(),
 				parsed[4].trim(), parsed[5].trim());
+	}
+	
+	private HttpEntity makeAuthEntity()
+	{
+		HttpHeaders headers = new HttpHeaders();
+		headers.setBearerAuth(AUTH_TOKEN);
+		HttpEntity entity = new HttpEntity<>(headers);
+		return entity;
 	}
 
 }

@@ -17,34 +17,32 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AuctionServiceTests {
+public class AuctionServiceTests
+{
 
-    private final String BASE_URL = "http://localhost:8080/";
+	private final String BASE_URL = "http://localhost:8080/";
 
-    @Mock
-    private RestTemplate restTemplate;
+	@Mock
+	private RestTemplate restTemplate;
 
-    @InjectMocks
-    private AuctionService auctionService = new AuctionService(BASE_URL);
+	@InjectMocks
+	private AuctionService auctionService = new AuctionService(BASE_URL);
 
-    @Test
-    public void step3_getAllAuctions() throws AuctionServiceException {
-        Auction[] auctions = { new Auction(), new Auction(), new Auction() };
+	@Test
+	public void step3_getAllAuctions() throws AuctionServiceException
+	{
+		Auction[] auctions = { new Auction(), new Auction(), new Auction() };
 
-        when(restTemplate.exchange(
-                ArgumentMatchers.eq(BASE_URL + "auctions"),
-                ArgumentMatchers.eq(HttpMethod.GET),
-                ArgumentMatchers.any(),
-                ArgumentMatchers.<Class<Auction[]>>any()))
-                .thenReturn(new ResponseEntity<>(auctions, HttpStatus.OK));
+		when(restTemplate.exchange(ArgumentMatchers.eq(BASE_URL + "auctions"), ArgumentMatchers.eq(HttpMethod.GET),
+				ArgumentMatchers.any(), ArgumentMatchers.<Class<Auction[]>>any()))
+						.thenReturn(new ResponseEntity<>(auctions, HttpStatus.OK));
 
-        // Act
-        Auction[] allAuctions = auctionService.getAll();
+		// Act
+		Auction[] allAuctions = auctionService.getAll();
 
-        // Assert
-        assertNotNull(allAuctions);
-        assertEquals(auctions.length, allAuctions.length);
-    }
-
+		// Assert
+		assertNotNull(allAuctions);
+		assertEquals(auctions.length, allAuctions.length);
+	}
 
 }

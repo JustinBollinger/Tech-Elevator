@@ -14,34 +14,33 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class AuthenticationServiceTests {
+public class AuthenticationServiceTests
+{
 
-    private final String BASE_URL = "http://localhost:8080/";
+	private final String BASE_URL = "http://localhost:8080/";
 
-    @Mock
-    private RestTemplate restTemplate;
+	@Mock
+	private RestTemplate restTemplate;
 
-    @InjectMocks
-    private AuthenticationService authenticationService = new AuthenticationService(BASE_URL);
+	@InjectMocks
+	private AuthenticationService authenticationService = new AuthenticationService(BASE_URL);
 
-    @Test
-    public void step2_loginMethod() throws AuthenticationServiceException {
-        Map<String, String> body = Collections.singletonMap("token","abcdefgh123456789");
-        ResponseEntity<Map<String,String>> expected = new ResponseEntity<>(body,HttpStatus.OK);
+	@Test
+	public void step2_loginMethod() throws AuthenticationServiceException
+	{
+		Map<String, String> body = Collections.singletonMap("token", "abcdefgh123456789");
+		ResponseEntity<Map<String, String>> expected = new ResponseEntity<>(body, HttpStatus.OK);
 
-        when(restTemplate.exchange(
-                ArgumentMatchers.contains("/login"),
-                ArgumentMatchers.eq(HttpMethod.POST),
-                ArgumentMatchers.any(),
-                ArgumentMatchers.<Class<Map>>any()))
-                .thenReturn(new ResponseEntity<>(body,HttpStatus.OK));
+		when(restTemplate.exchange(ArgumentMatchers.contains("/login"), ArgumentMatchers.eq(HttpMethod.POST),
+				ArgumentMatchers.any(), ArgumentMatchers.<Class<Map>>any()))
+						.thenReturn(new ResponseEntity<>(body, HttpStatus.OK));
 
-        // Act
-        ResponseEntity<Map> response = authenticationService.login("user,password");
+		// Act
+		ResponseEntity<Map> response = authenticationService.login("user,password");
 
-        // Assert
-        assertNotNull(response);
-        assertEquals(expected.getBody().get("token"),response.getBody().get("token"));
-    }
+		// Assert
+		assertNotNull(response);
+		assertEquals(expected.getBody().get("token"), response.getBody().get("token"));
+	}
 
 }
