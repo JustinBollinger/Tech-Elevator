@@ -3,7 +3,12 @@ package com.techelevator.application;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bouncycastle.asn1.x509.UserNotice;
+
+import com.techelevator.exceptions.AuthenticationServiceException;
+import com.techelevator.models.AuthenticatedUser;
 import com.techelevator.models.Product;
+import com.techelevator.models.UserCredentials;
 import com.techelevator.services.AuthenticationService;
 import com.techelevator.services.ProductService;
 import com.techelevator.views.UserInput;
@@ -31,12 +36,19 @@ public class VendingMachine
         	 
         	 if(menuSelection == 1)
         	 {
-        		 // display all products
         		 displayProducts();
         	 }
         	 else if(menuSelection == 2)
         	 {
         		 selectProduct();
+        	 }
+        	 else if(menuSelection == 3)
+        	 {
+        		 deleteProduct();
+        	 }
+        	 else if(menuSelection == 4)
+        	 {
+        		 userLogin();
         	 }
         	 else if(menuSelection == 0)
         	 {
@@ -50,8 +62,7 @@ public class VendingMachine
 			 }
          }
          
-         System.out.println("goodbye");
-        	 
+         System.out.println("Goodbye");	 
     }
     
     private void displayProducts()
@@ -76,5 +87,34 @@ public class VendingMachine
     	// display the product details of the selected product
     	UserOutput.displayProductDetails(selectedProduct);
     }
+    
+	private void deleteProduct()
+	{
+		List<Product> products = productService.getAllProducts(); 
+		UserOutput.displayProducts(products);
+		// get selection from user
+		int productId = UserInput.getProductDeletion(products);
+		// call api
+		productService.getProductById(productId);
+		UserOutput.displayProductDeletionMessage();
+	}
+	
+	private void userLogin()
+	{
+		// figure this out
+		UserCredentials credentials = UserInput.getUserCredentials();
+		AuthenticatedUser user = null;
+		
+		try
+		{
+			user = authenticationService.login(credentials);
+			productService.AUTH_TOKEN = user.getToken();
+			System.out.println("Login Successful");
+		}
+		 catch (AuthenticationServiceException e)
+		{
+			e.printStackTrace();
+		}
+	}
     
 }

@@ -4,7 +4,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.AuthenticationException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techelevator.vendingmachine.dao.ProductDAO;
 import com.techelevator.vendingmachine.models.Product;
 
+@PreAuthorize("isAuthenticated()")
 @RestController
 public class ProductController
 {
@@ -24,7 +29,6 @@ public class ProductController
 	public List<Product> getAll()
 	{
 		List<Product> products = dao.getProducts();
-		
 		return products;		
 	}
 	
@@ -34,4 +38,10 @@ public class ProductController
     	Product product = dao.get(id);    	
     	return product;
     }
+	
+	@DeleteMapping("/products/{id}")
+	public void deleteProduct(@PathVariable int id)
+	{
+		dao.deleteProduct(id);
+	}
 }

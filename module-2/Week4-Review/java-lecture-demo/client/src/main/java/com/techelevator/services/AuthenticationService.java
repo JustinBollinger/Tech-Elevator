@@ -53,7 +53,8 @@ public class AuthenticationService
 			ResponseEntity<AuthenticatedUser> response = restTemplate.exchange(BASE_URL + "login", HttpMethod.POST,
 					entity, AuthenticatedUser.class);
 			return response.getBody();
-		} catch (RestClientResponseException ex)
+		}
+		catch (RestClientResponseException ex)
 		{
 			String message = createLoginExceptionMessage(ex);
 			throw new AuthenticationServiceException(message);
@@ -66,7 +67,8 @@ public class AuthenticationService
 		try
 		{
 			return restTemplate.exchange(BASE_URL + "register", HttpMethod.POST, entity, Map.class);
-		} catch (RestClientResponseException ex)
+		}
+		catch (RestClientResponseException ex)
 		{
 			String message = createRegisterExceptionMessage(ex);
 			throw new AuthenticationServiceException(message);
@@ -80,7 +82,8 @@ public class AuthenticationService
 		{
 			message = ex.getRawStatusCode() + " : {\"timestamp\":\"" + LocalDateTime.now()
 					+ "+00:00\",\"status\":401,\"error\":\"Invalid credentials\",\"message\":\"Login failed: Invalid username or password\",\"path\":\"/login\"}";
-		} else
+		}
+		else
 		{
 			message = ex.getRawStatusCode() + " : " + ex.getResponseBodyAsString();
 		}
@@ -94,7 +97,8 @@ public class AuthenticationService
 		{
 			message = ex.getRawStatusCode() + " : {\"timestamp\":\"" + LocalDateTime.now()
 					+ "+00:00\",\"status\":400,\"error\":\"Invalid credentials\",\"message\":\"Registration failed: Invalid username or password\",\"path\":\"/register\"}";
-		} else
+		}
+		else
 		{
 			message = ex.getRawStatusCode() + " : " + ex.getResponseBodyAsString();
 		}

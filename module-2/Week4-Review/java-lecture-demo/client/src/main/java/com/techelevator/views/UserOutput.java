@@ -38,7 +38,11 @@ public class UserOutput
 		System.out.println("Type: " + product.getType());
 		
 		System.out.println();
-		
+	}
+	
+	public static void displayProductDeletionMessage()
+	{
+		System.out.println("The product has been deleted");
 	}
 
 }

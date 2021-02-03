@@ -95,7 +95,7 @@ public class Exercises {
 		// step 3 make sure that if n > 21 we double it
 		if(n > 21)
 		{
-			// difference = difference * 2; <= means the same as line 101
+			// difference = difference * 2; <= means the same as below
 			difference *= 2;
 		}
 		
