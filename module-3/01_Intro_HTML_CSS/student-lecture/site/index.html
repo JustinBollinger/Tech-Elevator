@@ -1,0 +1,56 @@
+<!-- Instructions for how to read the document.
+    Less important now because of the variety of doctypes,
+    but standard now to use is HTML5, and that's what the doctype tag below points to.-->
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <!-- Represents a section that the browser uses to process the document -->
+        <title>Welcome to my page!</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <!-- anything in the body is "displayed" on the page -->
+        
+        <div id="header">
+            <h1>Bits & Bytes</h1>
+                <p>Welcome to the internet's best restaurant!</p>
+        </div>
+        <!-- ^^^ and vvv are exactly the same, but vvv employs Semantic HTML which adds more
+        meaning to our code-->
+        <header>
+            <h1>Bits & Bytes</h1>
+                <p>Welcome to the internet's best restaurant!</p>
+        </header>
+
+
+        <nav>
+             <a href="reservations.html">Make a reservation.</a>
+        </nav>
+
+        <main>
+            <h2>Menu</h2>
+
+            <section>
+            
+                <h3>Lunch</h3>
+                <p>Full Stack Sandwich</p>
+                <img src="images/menu/lunch/full-stack-sandwich.png" alt="Full Stack Sandwich picture">
+                <p>Universal Serial Burger</p> 
+                <img src="images/menu/lunch/USBurger.png" alt="USBurger picture">
+
+            </section>
+
+            <section>
+                <h3>Dinner</h3>
+                <p>Rack of Ram</p>
+                <img src="images/menu/dinner/rack-of-ram.png" alt="Rack of Ram picture">
+                <p>Vegetable Array</p>
+                <img src="images/menu/dinner/array-of-vegetables.png" alt="Array of Vegetables picture">
+
+            </section>
+        </main>
+
+    </body>
+    
+</html>
