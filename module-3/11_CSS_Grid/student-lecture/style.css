@@ -120,3 +120,24 @@ div.food-item img {
 div.food-item p {
     line-height: 2em;
 }
+
+/* when doing media and things,
+think of Inheritance as it pertains to
+OOP. We are only changing things that are
+specific to vvv this media type. */
+@media screen and (max-width: 768px)
+{
+    #menu-nav li
+    {
+        display: inline-block;
+        padding-right: 10px;
+    }
+    ul.sub-menu
+    {
+        display: none;
+    }
+    #upcoming-events li, #upcoming-events h3
+    {
+        text-align: center;
+    }
+}
