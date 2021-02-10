@@ -1,17 +1,124 @@
-* {
+*
+{
   box-sizing: border-box;
   font-family: Tahoma, Verdana, Segoe, sans-serif;
 }
 
-html {
+html
+{
   font-size: 16px;
 }
 
-body {
+body
+{
   background-color: rgba(192, 192, 192, 0.1);
 }
 
-ul {
+ul
+{
   margin: 0;
   padding: 0;
+}
+
+aside
+{
+  position: fixed;
+  width: 200px;
+  border-right: 1px solid rgba(0, 173, 238, 0.4);
+  height: 100vh;
+  padding: 0 20px;
+}
+
+aside > img
+{
+  height: 120px;
+  display: block;
+  margin: 0 auto;
+}
+
+main
+{
+  margin-left: 200px;
+  padding: 0 20px;
+}
+
+aside > nav > ul > li
+{
+  list-style: none;
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0, 173, 238, 0.4);
+  margin: 10px auto;
+  padding-bottom: 10px;
+  width: 80%;
+  line-height: 2;
+}
+
+aside > nav > ul > li > a
+{
+  font-weight: bold;
+  color: rgba(0, 173, 238, 0.4);
+  text-decoration: none;
+}
+
+a:hover
+{
+  text-decoration: underline;
+}
+
+header
+{
+  height: 120px;
+}
+
+header > img
+{
+  height: 80%;
+}
+
+.banner
+{
+  display: block;
+  width: 100%;
+}
+
+section > div
+{
+  display: inline-block;
+  width: 33%;
+  padding-right: 20px;
+  margin-top: 20px;
+}
+
+section > div > h2
+{
+  color: #8CC36F;
+}
+
+section > div > h2 > i
+{
+  margin-right: 10px;
+}
+
+
+/* #what-we-do,
+#our-work
+{
+  border-right: 1px solid #8CC36F;
+}*/
+
+/* #our-work,
+#contact-us
+{
+  padding-left: 20px;
+} */
+
+div:not(div:last-child)
+{
+  border-right: 1px solid #8CC36F;
+}
+
+div:not(div:first-child)
+{
+  padding-left: 20px;
 }

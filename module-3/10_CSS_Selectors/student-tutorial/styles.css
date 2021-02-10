@@ -7,11 +7,13 @@ body {
   padding: 0;
 }
 
-#left-panel>hr {
+#left-panel > hr
+{
   width: 80%;
 }
 
-#left-panel>nav>menu {
+#left-panel > nav > menu
+{
   padding-left: 0;
   width: 90%;
 }
