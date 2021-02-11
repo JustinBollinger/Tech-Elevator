@@ -1,0 +1,136 @@
+#main-grid
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 50px;
+
+    grid-template-areas: 
+    "headline headline s-pic"
+    "s-quote s-quote s-pic"
+    "s-profile s-profile s-contact"
+    "exp-grid exp-grid exp-grid";
+
+    align-items: center;
+}
+
+h1
+{
+    grid-area: headline;
+    
+    
+}
+
+#student-picture
+{
+    grid-area: s-pic;
+    text-align: center;
+}
+
+#student-quote
+{
+    grid-area: s-quote;
+}
+
+#student-profile
+{
+    grid-area: s-profile;
+}
+
+#student-contact
+{
+    grid-area: s-contact;
+    text-align: center;
+}
+
+
+#experience-grid
+{
+    grid-area: exp-grid;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 50px;
+
+    grid-template-areas: 
+    "exp-code exp-code"
+    "exp-db exp-db"
+    "exp-web exp-design";
+}
+
+#experience-code
+{
+    grid-area: exp-code;
+}
+
+#experience-database
+{
+    grid-area: exp-db;
+}
+
+#experience-web
+{
+    grid-area: exp-web;
+}
+
+#experience-design
+{
+    grid-area: exp-design;
+}
+
+/* responsive design for tablets */
+@media screen and (max-width: 1024px)
+{
+    #main-grid
+    {
+        column-gap: 35px;
+        grid-template-columns: 1fr 1fr;
+
+        grid-template-areas: 
+        "headline headline"
+        "s-quote s-pic"
+        "s-quote s-contact"
+        "s-profile s-profile"
+        "exp-grid exp-grid";
+    }
+
+    #experience-grid
+    {
+        gap: 20px;
+
+        grid-template-areas: 
+        "exp-code exp-web"
+        "exp-db exp-design";
+    }
+}
+
+@media screen and (max-width: 450px)
+{
+    #main-grid
+    {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "headline"
+        "s-pic"
+        "s-contact"
+        "s-quote"
+        "s-profile"
+        "exp-grid"
+        "exp-grid"
+        "exp-grid"
+        "exp-grid"
+        "exp-grid";
+
+    }
+
+    #experience-grid
+    {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "exp-code"
+        "exp-web"
+        "exp-db"
+        "exp-design";
+    }
+}
