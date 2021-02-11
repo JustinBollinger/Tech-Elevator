@@ -53,11 +53,6 @@ section {
   margin-bottom: 25px;
 }
 
-#featured section article:nth-child(even) {
-  border-left: 20px solid darkcyan;
-  border-right: 20px solid darkcyan;
-}
-
 #featured section article div {
   padding: 40px;
   max-height: 10vw;
