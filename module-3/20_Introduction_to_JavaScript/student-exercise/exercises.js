@@ -5,13 +5,15 @@
 		sumDouble(1, 2) → 3
 		sumDouble(3, 2) → 5
 		sumDouble(2, 2) → 8
-
+*/
 		function sumDouble(x, y) {
 			// do logic here
+			if (x == y) return x * 4;
+			
 			// return result;
 			return x + y;
         }
-*/
+
 
 /*
 2. **hasTeen** We'll say that a number is "teen" if it is in the range 13..19 inclusive. 

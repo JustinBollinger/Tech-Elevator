@@ -9,9 +9,42 @@
  * They don't have a return type and the naming convention is camel-case.
  */
 function variables() {
+var name = "Justin"; // old way of declaring variables. DON'T DO IT.
+let age = 30; // variable that can be changed
+const lastName = "Bollinger" // variable that canNOT be changed
+
   // Declares a variable where the value cannot be changed
+  const daysOfTheWeek = 7;
+  console.log('There are ' + daysOfTheWeek + ' days in the week.');
+
+
+  const message = `There are ${daysOfTheWeek} days in the week.`;
+  console.log(message);
+
+
   // Declares a variable those value can be changed
+  let daysOfMonth = 30;
+  console.log(typeof daysOfMonth);
+  console.log(`There are ${ daysOfMonth } days in the month.`);
+
+  daysOfMonth = "29";
+  console.log(typeof daysOfMonth);
+  console.log(`There are ${ daysOfMonth } days in the month.`);
+
   // Declares a variable that will always be an array
+  const weekdays = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday"
+  ];
+  console.log(weekdays);
+  console.table(weekdays)
+
+
 }
 
 /**
@@ -20,9 +53,13 @@ function variables() {
  * @param {Number} param1 The first number to display
  * @param {Number} param2 The second number to display
  */
-function printParameters(param1, param2) {
+function printParameters(param1, param2)
+{
   console.log(`The value of param1 is ${param1}`);
   console.log(`The value of param2 is ${param2}`);
+
+
+
 }
 
 /**
@@ -32,10 +69,15 @@ function printParameters(param1, param2) {
  * @param {Object} x
  * @param {Object} y
  */
-function equality(x, y) {
+function equality(x, y)
+{
   console.log(`x is ${typeof x}`);
   console.log(`y is ${typeof y}`);
-
+// x = y - assignment. x is equal to whatever is stored in y.
+// x == y - equality. can I convert the string to a number and is that the same?
+  // is 5 the same as '5'? true
+// x === y - strict equality. a string is not the same as a number.
+  // is 5 the same as '5'? false
   console.log(`x == y : ${x == y}`); // true
   console.log(`x === y : ${x === y}`); // false
 }
@@ -46,10 +88,14 @@ function equality(x, y) {
  * everything else is always truthy
  * @param {Object} x The object to check for truthy or falsy,
  */
-function falsy(x) {
-  if (x) {
+function falsy(x) 
+{
+  if (x) // is the value set x!= null; x != undefined; x != false; x != 0
+  {
     console.log(`${x} is truthy`);
-  } else {
+  }
+  else
+  {
     console.log(`${x} is falsy`);
   }
 }
@@ -60,7 +106,10 @@ function falsy(x) {
     - values can be arrays
     - or they can be functions
 */
-function objects() {
+function objects()
+{
+  //JSON
+  //JavaScript Object Notation
   const person = {
     firstName: "Bill",
     lastName: "Lumbergh",
@@ -73,11 +122,30 @@ function objects() {
     ]
   };
 
+  
+
   // Log the object
+  console.log(person);
 
   // Log the first and last name
+  console.log(`Person name: ${person.firstName} ${person.lastName}`);
+
 
   // Log each employee
+  for (let i = 0; i < person.employees.length; i++)
+  {
+    console.log(person.employees[i]);
+  }
+
+  // you can also create an empty object
+  // and add the properties as you go
+  const employee = {};
+  employee.firstName = "Jussie";
+  employee.lastName = "Bussie";
+
+  // Log the object
+  console.log(employee);
+
 }
 
 /*
@@ -90,12 +158,21 @@ function with the same name, more than one time in a script file, the
 earlier ones are overriden and the most recent one will be used.
 */
 
-function Add(num1, num2) {
+function Add(num1, num2)
+{
   return num1 + num2;
 }
 
-function Add(num1, num2, num3) {
-  return num1 + num2 + num3;
+// because the below function has been defined with the same name as the one above, the one below
+// will take over and the one above becomes invisible, basically. It doesn't even get touched.
+
+function Add(num1, num2, num3)
+{
+  let answer = num1;
+  if (num2) answer += num2;
+  if (num3) answer += num3;
+  
+  return answer;
 }
 
 /*
@@ -106,13 +183,19 @@ Math Library
 A built-in `Math` object has properties and methods for mathematical constants and functions.
 */
 
-function mathFunctions() {
+function mathFunctions()
+{
   console.log("Math.PI : " + Math.PI);
   console.log("Math.LOG10E : " + Math.LOG10E);
   console.log("Math.abs(-10) : " + Math.abs(-10));
   console.log("Math.floor(1.99) : " + Math.floor(1.99));
   console.log("Math.ceil(1.01) : " + Math.ceil(1.01));
   console.log("Math.random() : " + Math.random());
+
+  console.log('Random number between 1 and 10');
+  let number = 10 * Math.random();
+  number = Math.round(number);
+  console.log(number);
 }
 
 /*
@@ -123,7 +206,8 @@ String Methods
 The string data type has a lot of properties and methods similar to strings in Java/C#
 */
 
-function stringFunctions(value) {
+function stringFunctions(value)
+{
   console.log(`.length -  ${value.length}`);
   console.log(`.endsWith('World') - ${value.endsWith("World")}`);
   console.log(`.startsWith('Hello') - ${value.startsWith("Hello")}`);
