@@ -82,8 +82,6 @@
 		oddOnly([2, 4, 8, 32, 256]); → []
 */
 
-		// NOT DONE YET
-
 		function oddOnly(array)
 		{
 			let odds = [];
@@ -92,28 +90,11 @@
 			{
 				if(array[i] % 2 == 1)
 				{
-					odds.push([i]);
+					odds.push(array[i]);
 				}
 			}
 			return odds;
 		}
-
-// 		function oddOnly(array)
-// {
-//     	let oddOnly = [];
-//     	for (var i = 0; i < array.length; i++) 
-//     {
-//         if (array[i] % 2 != 0) 
-//         {
-//             oddOnly.push(array[i]);
-//         }
-//     }
-//     return oddOnly;
-// }
-
-
-
-
 
 /*
 6. **frontAgain** Given a string, return true if the first 2 chars in the string also appear 
@@ -124,14 +105,23 @@
 		frontAgain("ed") → true
 */
 
-		// function frontAgain(x)
-		// {
+		function frontAgain(word)
+		{
+			const firstTwo = word.substring(0,2);
 
+			return word.endsWith(firstTwo);
 
+			// both above and below satisfy requirement
 
+			/* 
+			const lastTwo = word.substring(word.length -2);
 
-			
-		// }
+			console.log(firstTwo);
+			console.log(lastTwo);
+
+			return firstTwo === lastTwo;
+			*/
+		}
 
 /*
 7. **cigarParty** When squirrels get together for a party, they like to have cigars. 
@@ -145,14 +135,13 @@ successful, or false otherwise.
 		cigarParty(70, true) → true
 */
 
-		// function cigarParty(cigars, isWeekend)
-		// {
-		// 	if (isWeekend)
-		// 	{
-
-		// 	}
+		function cigarParty(cigars, isWeekend)
+		{
+			if(cigars >= 40 && isWeekend == true) return true;
+			if((cigars >=40 && cigars <= 60) && isWeekend == false) return true;
+			if((cigars < 40 || cigars > 60) && isWeekend == false) return false;
 			
-		// }
+		}
 
 /*
 8. **fizzBuzz** Because you know you can't live without it, FizzBuzz.
@@ -185,21 +174,19 @@ successful, or false otherwise.
 	filterEvens([100, 8, 21, 24, 62, 9, 7]) → [100, 8, 24, 62]
 */
 
-		// function filterEvens(x)
-		// {
-		// 	let evensOnly = [];
+		function filterEvens(array)
+		{
+			let evens = [];
 
-		// 	for (let i = 0; i < x.length; i++)
-		// 	{
-		// 		if(x[i] % 2 == 1)
-		// 		{
-		// 			x.pop
-		// 		}
-				
-				
-		// 	}
-		// 	return evensOnly;
-		// }
+			for(i = 0; i < array.length; i++)
+			{
+				if(array[i] % 2 == 0)
+				{
+					evens.push(array[i]);
+				}
+			}
+			return evens;
+		}
 
 /*
 10. **filterBigNumbers** Write a function that filters numbers greater than or equal to 100.
@@ -209,10 +196,19 @@ successful, or false otherwise.
 	filterBigNumbers([]) → []
 */
 
-		// function filterBigNumbers
-		// {
-			
-		// }
+		function filterBigNumbers(array)
+		{
+			let largeNums = [];
+
+			for(let i = 0; i < array.length; i++)
+			{
+				if(array[i] >= 100)
+				{
+					largeNums.push(array[i]);
+				}
+			}
+			return largeNums;
+		}
 
 /*
 11. **filterMultiplesOfX** Write a function to filter numbers that are a multiple of a 
@@ -222,10 +218,19 @@ parameter, `x` passed in.
 	filterMultiplesOfX([3, 5, 10, 20, 18, 21, 42, 67], 5) → [5, 10, 20]
 */
 
-		// function filterMultiplesOfX
-		// {
-			
-		// }
+		function filterMultiplesOfX(array, x)
+		{
+			let multiplesOfX = [];
+
+			for (let i = 0; i < array.length; i++) 
+			{
+				if(array[i] % x == 0)
+				{
+					multiplesOfX.push(array[i])
+				}
+			}
+			return multiplesOfX;
+		}
 
 /*
 12. **createObject** Write a function that creates an object with a property called 

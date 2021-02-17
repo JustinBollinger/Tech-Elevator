@@ -1,10 +1,28 @@
+/*
+function definition - fat arrow
+parameters
+
+array functions - fat arrow function
+  - foreach - how to process each row
+  - map - map each object to a new form (returns a new array)
+  - filter - where clause; will return only the items that
+              match your criteria (returns a new array)
+  - reduce - aggregation function that returns a single value
+              based on all items in the array
+*/
+
+
+
+
+
 /**
  * All named functions will have the function keyword and
  * a name followed by parentheses.
  * 
  * @returns {number} 1
  */
-function returnOne() {
+function returnOne()
+{
   return 1;
 }
 
@@ -16,7 +34,8 @@ function returnOne() {
  *
  * @param {any} value the value to print to the console
  */
-function printToConsole(value) {
+function printToConsole(value)
+{
   console.log(value);
 }
 
@@ -27,6 +46,14 @@ function printToConsole(value) {
  * @param {number} firstParameter the first parameter to multiply
  * @param {number} secondParameter the second parameter to multiply
  */
+
+  const multiplyTogether = (firstParameter, secondParameter) =>
+  {
+    return firstParameter * secondParameter;
+  }
+
+
+
 
 /**
  * This version makes sure that no parameters are ever missing. If
@@ -39,7 +66,10 @@ function printToConsole(value) {
  * @param {number} [secondParameter=0] the second parameter to multiply
  */
 
-
+const multiplyNoUndefined = (firstParameter = 0, secondParameter = 0) =>
+{
+  return firstParameter * secondParameter;
+}
  
 /**
  * Functions can return earlier before the end of the function. This could be useful
@@ -51,10 +81,12 @@ function printToConsole(value) {
  * @param {number} firstParameter the first parameter
  * @param {number} secondParameter the second parameter
  */
-function returnBeforeEnd(firstParameter, secondParameter) {
+function returnBeforeEnd(firstParameter, secondParameter)
+{
   console.log("This will always fire.");
 
-  if (firstParameter == 0) {
+  if (firstParameter == 0)
+  {
     console.log("Returning secondParameter times two.");
     return secondParameter * 2;
   }
@@ -82,12 +114,14 @@ function scopeTest() {
   }
 
   // scopedToBlock doesn't exist here so an error will be thrown
-  if (inScopeInScopeTest && scopedToBlock) {
+  if (inScopeInScopeTest && scopedToBlock)
+  {
     console.log("This won't print!");
   }
 }
 
-function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') {
+function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ')
+{
   let description = `${name} is currently ${age} years old. Their quirks are: `;
   return description + listOfQuirks.join(separator);
 }
@@ -99,8 +133,36 @@ function createSentenceFromUser(name, age, listOfQuirks = [], separator = ', ') 
  * @param {number[]} numbersToSum numbers to add up
  * @returns {number} sum of all the numbers
  */
-function sumAllNumbers(numbersToSum) {
-  return numbersToSum.reduce();
+// function sumAllNumbers1(numbersToSum)
+// {
+//   let sum = 0;
+
+//   numbersToSum.forEach((number) =>
+//     {
+//       sum += number;
+//     }
+//   );
+//   return sum;
+//   }
+
+// function sumAllNumbers2(numbersToSum)
+// { 
+//   for(let i = 0; i < numbersToSum.length; i++)
+//   {
+//     const number = numbersToSum[i];
+//     sum += number;
+//   }
+//   return sum; 
+// }
+
+function sumAllNumbers(numbersToSum)
+{
+  const answer = numbersToSum.reduce((aggregate, currentNumber) =>
+                  {
+                    return aggregate + currentNumber;
+                  }
+                );
+  return answer;
 }
 
 /**
@@ -111,4 +173,31 @@ function sumAllNumbers(numbersToSum) {
  * @returns {number[]} a new array with only those numbers that are
  *   multiples of 3
  */
-function allDivisibleByThree(numbersToFilter) {}
+
+ // better but not very flexible
+function allDivisibleByThree(numbersToFilter)
+{
+  const newArray = numbersToFilter.filter(isDivisibleByThree);
+
+  return newArray;
+}
+
+const isDivisibleByThree = (value) => {
+  return value % 3 === 0;
+}
+
+const isDivisibleByFive = (value) => {
+  return value % 5 === 0;
+}
+
+
+functionAllDivisibleByThree1(numbersToFilter)
+{
+  const newArray = [];
+
+  numbersToFilter.forEach((currentNumber) =>
+  {
+    if()
+  }
+  )
+}
