@@ -4,8 +4,43 @@ window.onload = () =>
     const div = document.getElementById('names');
 
     const names = getNames();
+    const customers = convertListToCustomers(names);
 
-    div.innerHTML =names;
+    const jsonNames = JSON.stringify(customers);
+
+    /*
+    
+    */
+
+    const list = convertCustomersToListItem(customers);
+
+    const ul = document.createElement('ul');
+
+    list.forEach(li =>
+    {
+        ul.appendChild(li);
+    })
+
+    // let li = document.createElement('li')
+    // li.innerHTML = "Kennedy Myers";
+    // ul.appendChild(li);
+
+    // let li = document.createElement('li')
+    // li.innerHTML = "Donte Beltran";
+    // ul.appendChild(li);
+
+    div.appendChild(ul);
+
+    const convertCustomersToListItem = (customers) =>
+    {
+        const list = customers.map( customer => {
+            const li = document.createElement('li');
+            li.innerHTML = `${customer.firstName} ${customer.lastName}`;
+            return li;
+        });
+
+        return list;
+    }
 
 }
 
@@ -65,3 +100,84 @@ and return an array of Customer objects
     }
 ]
 */
+
+/*
+@param {string[]} names
+@return {objects[]} list of customers
+*/
+
+class array
+{
+    items;
+
+    map = (lambda) =>
+    {
+        const newArray = [];
+
+        // loop through all; of the items in THIS array
+        // convert them
+        // and add them to the newArray
+        this.items.array.forEach(element => {
+
+            //this is where the specific code starts
+            const newItem = lambda(element);
+
+            newArray.push(newItem);
+
+        });
+
+        return newArray;
+    }
+}
+
+const convertListToCustomers = (names) =>
+{
+    // option 1 - call the named function implicitly
+    const customers = names.map(convertToCustomer);
+
+    // option 2 - create anonymous function and
+    // call the named function explicitly
+    // const customers = names.map((name) =>
+    // {
+    //     return convertToCustomer(name);
+    // })
+
+    // option 3 - don't use a named function
+    // but write an anonymous function inline
+    // do all the processing here
+    // const customers = names.map((name) =>
+    // {
+    //     const values = name.split(',');
+
+    //     const customer = {
+    //         id: values[0],
+    //         firstName: values[1],
+    //         lastName: values[2]
+    //     };
+
+    //      return customer;
+    // });
+
+    // const customers = [];
+
+    // names.forEach((name) => 
+    // {
+    //     const customer = convertToCustomer(name);
+    //     customers.push(customer);
+    // });
+
+    return customers;
+}
+
+const convertToCustomer = (name) =>
+{
+    const values = name.split(',');
+
+    const customer = {
+        id: values[0],
+        firstName: values[1],
+        lastName: values[2]
+    };
+
+    return customer;
+}
