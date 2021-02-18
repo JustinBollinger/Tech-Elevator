@@ -59,7 +59,7 @@ function displayReview(review) {
 }
 
 // LECTURE STARTS HERE ---------------------------------------------------------------
-
+document.addEventListener('DOMContentLoaded', () =>{
 // set the product reviews page title
 setPageTitle();
 // set the product reviews page description
@@ -67,15 +67,50 @@ setPageDescription();
 // display all of the product reviews on our page
 displayReviews();
 
+// set up the paragraph to enable toggling
+  const descriptionParagraph = document.getElementById('description');
+  descriptionParagraph.addEventListener('click', (event) => 
+  {
+    console.log('description paragraph was clicked');
+    toggleDescriptionEdit(event.target); // event.target == the element that was clicked
+
+    event.stopPropagation(); // stops event bubbling
+  });
+
+  const inputDescription = document.getElementById('inputDesc');
+  inputDescription.addEventListener('keyup', (event) =>
+  {
+    if(event.key === 'Enter')
+    {
+      exitDescriptionEdit(event.target, true);
+    }
+    else if (event.key === 'Escape')
+    {
+      exitDescriptionEdit(event.target, false);
+    }
+  });
+
+  // end description toggling
+
+
+  // show/hide form
+  const formButton = document.getElementById('btnToggleForm');
+  formButton.addEventListener('click', showHideForm);
+
+  const submitButton = document.getElementById('btnSaveReview');
+  submitButton.addEventListener('click', saveReview);
+
+});
+
 /**
  * Take an event on the description and swap out the description for a text box.
  *
  * @param {Event} event the event object
  */
-function toggleDescriptionEdit(desc) {
+function toggleDescriptionEdit(desc) { // desc is the description paragraph
   const textBox = desc.nextElementSibling;
   textBox.value = description;
-  textBox.classList.remove('d-none');
+  textBox.classList.remove('d-none'); // this unhides the textbox by removing its class
   desc.classList.add('d-none');
   textBox.focus();
 }
@@ -128,6 +163,33 @@ function resetFormValues() {
 }
 
 /**
- * I will save the review that was added using the add review from
+ * I will save the review that was added using the add review form.
+ * @param {Event} event 
  */
-function saveReview() {}
+function saveReview(event)
+{
+  // critical when working with FORMS
+  // disable the form's default action of submitting the form
+  event.preventDefault();
+
+  // get the values and add the new review
+  const nameBox = document.getElementById('name');
+  const titleBox = document.getElementById('title');
+  const reviewBox = document.getElementById('review');
+  const ratingDropdown = document.getElementById('rating');
+  
+
+  const review =  {
+    reviewer: nameBox.value,
+    title: titleBox.value,
+    review: reviewBox.value,
+    rating: ratingDropdown.value
+  }
+
+  reviews.push(review); // add it to the global list
+  displayReview(review); // display it on the page
+
+  resetFormValues(); // clear the form after submitting
+
+  showHideForm();
+}

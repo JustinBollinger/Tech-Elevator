@@ -37,19 +37,19 @@ const iqTest = (numberString) =>
 
     const searchForEven = evenCount <= 1;
 
-    // this is ugly - it's basically a hack re-write of evens.indexOf()
-    let position = 0
-    for (let i = 0; i < evens.length; i++) 
-    {
-        const value = evens[i];
-        if (value === searchForEven)
-        {
-            position = i + 1;
-            break;
-        }
-    }
-    return position;
+    // // this is ugly - it's basically a hack re-write of evens.indexOf()
+    // let position = 0
+    // for (let i = 0; i < evens.length; i++) 
+    // {
+    //     const value = evens[i];
+    //     if (value === searchForEven)
+    //     {
+    //         position = i + 1;
+    //         break;
+    //     }
+    // }
+    // return position;
 
-    // // using indexof is much cleaner
-    //return evens.indexOf(searchForEven) + 1;   
+    // using indexof is much cleaner
+    return evens.indexOf(searchForEven) + 1;   
 }

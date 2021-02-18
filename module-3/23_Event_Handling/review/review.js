@@ -17,13 +17,13 @@ function changeFont()
 
 /* change class options */
 
-function addClass(className)
+function addClass_Replace(className)
 {
     const div = document.getElementById('content');
     div.setAttribute('class', className);
 }
 
-function addClassOption1(className)
+function addClass_option1(className)
 {
     const div = document.getElementById('content');
 
@@ -44,7 +44,7 @@ function addClassOption1(className)
     div.setAttribute('class', classes.join(' '));
 }
 
-function addClassOption2(className)
+function addClass_option2(className)
 {
     const div = document.getElementById('content');
 
@@ -63,7 +63,7 @@ function addClassOption2(className)
     div.className = classes.join(' ');
 }
 
-function addClassOption3(className)
+function addClass_option3(className)
 {
     const div = document.getElementById('content');
 
