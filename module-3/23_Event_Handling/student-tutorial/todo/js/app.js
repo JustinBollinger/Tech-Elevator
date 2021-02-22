@@ -54,10 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
 
-  task.addEventListener('dblclick', () => {
-    if( task.classList.contains('completed')){
-        task.classList.remove('completed')
-        task.querySelector('i').classList.remove('complete')
+    task.addEventListener('dblclick', () => {
+      if( task.classList.contains('completed')){
+          task.classList.remove('completed')
+          task.querySelector('i').classList.remove('complete')
       }
     })
   })
