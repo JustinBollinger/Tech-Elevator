@@ -11,12 +11,12 @@
     </thead>
     <tbody>
       <tr>
-        <td><input type="text" v-model="filter.firstName" id="firstNameFilter"/></td>
-        <td><input type="text" v-model="filter.lastName" id="lastNameFilter"/></td>
-        <td><input type="text" v-model="filter.username" id="usernameFilter"/></td>
-        <td><input type="text" v-model="filter.emailAddress" id="emailFilter"/></td>
+        <td><input type="text" id="firstNameFilter" v-model="filter.firstName"/></td>
+        <td><input type="text" id="lastNameFilter" v-model="filter.lastName"/></td>
+        <td><input type="text" id="usernameFilter" v-model="filter.username"/></td>
+        <td><input type="text" id="emailFilter" v-model="filter.emailAddress"/></td>
         <td>
-          <select v-model="filter.status" id="statusFilter">
+          <select id="statusFilter" v-model="filter.status">
             <option value="">Show All</option>
             <option value="Active">Active</option>
             <option value="Disabled">Disabled</option>
