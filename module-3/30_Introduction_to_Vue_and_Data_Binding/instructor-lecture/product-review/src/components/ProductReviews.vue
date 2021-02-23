@@ -33,7 +33,7 @@
 
 
         <!-- v-bind:class="review.isFavorite ? 'favorite' : ''"  --- this would also work for class binding-->
-        <!-- loop throu all of the reviews -->
+        <!-- loop through all of the reviews -->
         <div class="review"             
             v-bind:class="{favorite: review.isFavorite}"
             v-for="review in reviews"
