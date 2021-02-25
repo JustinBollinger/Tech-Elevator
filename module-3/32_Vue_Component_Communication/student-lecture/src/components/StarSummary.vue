@@ -11,12 +11,16 @@ export default {
   props: ["rating"],
   methods: {
     updateFilter() {
-
+      // update the state
+      // commit initiates the mutation action
+      // 1st arg - the name of the desired mutation
+      // 2nd arg - what am I changing in the state?
+      this.$store.commit('UPDATE_FILTER', parseInt(this.rating));
     }
   },
   computed: {
     numberOfReviews() {
-      const reviews = [];
+      const reviews = this.$store.state.reviews;
       return reviews.reduce((currentCount, review) => {
         return currentCount + (review.rating === parseInt(this.rating) ? 1 : 0);
       }, 0);

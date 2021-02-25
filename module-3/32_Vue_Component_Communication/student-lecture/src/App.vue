@@ -4,11 +4,11 @@
     <p class="description"></p>
     <div class="well-display">
       <average-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
-      <star-summary />
+      <star-summary rating= "1" />
+      <star-summary rating= "2" />
+      <star-summary rating= "3" />
+      <star-summary rating= "4" />
+      <star-summary rating= "5" />
     </div>
     <add-review />
     <review-list />
@@ -32,7 +32,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

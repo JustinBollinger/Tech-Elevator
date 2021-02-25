@@ -10,7 +10,7 @@ export default {
   name: "average-summary",
   methods: {
     updateFilter() {
-
+      this.$store.commit('UPDATE_FILTER', 0);
     }
   },
   computed: {
