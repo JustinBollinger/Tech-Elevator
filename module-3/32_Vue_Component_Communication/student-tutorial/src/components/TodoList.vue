@@ -2,9 +2,14 @@
     <section class="todo-list">
         <h1>My Daily Routine</h1>
         <ul>
-            <li v-for="todo in todos" v-bind:key="todo.name"  v-bind:class="{ 'todo-completed': todo.done }">
-                <input type="checkbox" v-model="todo.done"/>
-                <span v-bind:class="{ completed: todo.done }">{{todo.name}}</span>
+            <li v-for="todo in $store.state.todos" v-bind:key="todo.name"  v-bind:class="{ 'todo-completed': todo.done }">
+                <div>
+                    <input type="checkbox" 
+                        v-bind:checked="todo.done" 
+                        v-on:click="checkTodoBox(todo)" />
+                    <span v-bind:class="{ completed: todo.done }">{{todo.name}}</span>
+                </div>
+                <div class="category">({{todo.category}})</div>
             </li>
         </ul>
     </section>
@@ -12,20 +17,11 @@
 
 <script>
 export default {
-  data() {
-    return {
-        todos: [
-          { name: 'Wake up', done: false, category: 'Home' },
-          { name: '5 Minute Morning Movement', done: false, category: 'Home' },
-          { name: 'Meditate', done: false, category: 'Home' },
-          { name: 'Brush teeth', done: false, category: 'Home' },
-          { name: 'Shower', done: false, category: 'Home' },
-          { name: 'Answer email', done: false, category: 'Work' },
-          { name: 'Stand up meeting', done: false, category: 'Work' },
-          { name: 'Fix a bug', done: false, category: 'Work' },
-        ]
+    methods: {
+        checkTodoBox(todo) {
+            this.$store.commit('FLIP_DONE', todo)
+        }
     }
-  }
 }
 </script>
 
@@ -54,6 +50,8 @@ ul {
     padding:0px;
 }
 li {
+    display: flex;
+    justify-content: space-between;
     font-size: 24px;
     border-bottom:1px solid #f2f2f2;
     padding:10px 20px;
@@ -64,5 +62,9 @@ li:last-child{
 li.todo-completed {
     text-decoration: line-through;
     color: darkgray;
+}
+div.category {
+    font-size: .75em;
+    color: red;
 }
 </style>

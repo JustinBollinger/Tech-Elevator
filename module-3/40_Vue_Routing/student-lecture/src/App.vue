@@ -1,5 +1,8 @@
 <template>
-  <div></div>
+  <div>
+    <!-- <router-view /> is the placeholder for what the routeing engine will display -->
+    <router-view />
+  </div>
 </template>
 
 <script>
