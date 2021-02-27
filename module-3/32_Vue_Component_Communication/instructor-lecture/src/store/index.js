@@ -47,7 +47,7 @@ export default new Vuex.Store({
       state.filter = filter;
     },
     FLIP_FAVORITED(state, reviewToChange) {
-      reviewToChange.favorited = ! reviewToChange.favorited;
+      reviewToChange.favorited = !reviewToChange.favorited;
     }
   },
   actions: {
