@@ -10,10 +10,8 @@
         v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
 
     <h3 class="book-author">{{book.author}}</h3>
-
-    <button class ='mark-unread' @click="toggleReadStatus" v-if="book.read==false">Mark Read</button>
-    <button class='mark-read' @click="toggleReadStatus" v-else>Mark Unread</button>
-
+    
+    <button v-on:click="toggleReadStatus" v-bind:class="{'mark-read' :!book.read, 'mark-unread':book.read}">{{buttonText}}</button>
   </div>
 </template>
 
@@ -24,6 +22,16 @@ export default {
     methods: {
         toggleReadStatus() {
             this.$store.commit('TOGGLE_READ', this.book);
+        }
+    },
+    computed: {
+        buttonText() {
+            if(this.book.read) {
+                return 'Mark Unread'
+            }
+            else {
+                return 'Mark Read'
+            }
         }
     }
 }
