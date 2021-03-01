@@ -1,7 +1,15 @@
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+  <div id='app'>
+    <nav>
+      <router-link to='/'>Home</router-link>
+      |
+      <router-link to='/myBooks'>My Books</router-link>
+    </nav>
+
+    <div class='router'>
+      <router-view />
+    </div>
+  </div>  
 </template>
 
 <script>
