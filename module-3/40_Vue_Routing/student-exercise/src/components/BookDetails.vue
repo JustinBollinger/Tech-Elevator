@@ -1,8 +1,7 @@
 <template>
   <div>Book Details
-      <div> ISBN: {{$route.params.isbn}}</div>
+      <div>ISBN: {{$route.params.isbn}}</div>
       <book-card v-bind:book='book' />
-      <!-- create the page to display the details -->
   </div>
 </template>
 
