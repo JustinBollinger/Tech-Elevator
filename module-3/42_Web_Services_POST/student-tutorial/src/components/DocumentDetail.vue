@@ -44,7 +44,7 @@ export default {
     };
     docsService.update(doc.id, doc).then(response => {
      if (response.status === 200) {
-        this.$router.push("/");
+        this.$router.push('/');
       }
     });
 }
