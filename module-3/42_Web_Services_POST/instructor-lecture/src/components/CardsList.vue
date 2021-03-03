@@ -50,7 +50,14 @@ export default {
   },
   created() {
     this.boardId = this.$route.params.id;
-    this.retrieveCards();
+    // do I already have cards?
+    if(!this.hasCards || !this.cardsAreForCurrentBoard) {
+      this.retrieveCards();
+    }
+    else {
+    // if yes, do the cards belong to the current boardId?
+    this.isLoading = false;
+    }
   },
   methods: {
     retrieveCards() {
@@ -97,6 +104,15 @@ export default {
     }
   },
   computed: {
+    hasCards() {
+      return this.$store.state.boardCards.length > 0;
+    },
+    cardsAreForCurrentBoard() {
+      if(this.hasCards) {
+      return this.$store.state.boardCards[0].boardId == this.boardId;
+      }
+      return false;
+    },
     planned() {
       return this.$store.state.boardCards.filter(
         card => card.status === "Planned"
