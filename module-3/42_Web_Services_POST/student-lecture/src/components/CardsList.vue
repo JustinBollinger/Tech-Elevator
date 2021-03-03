@@ -48,6 +48,10 @@ export default {
       errorMsg: ""
     };
   },
+  created() {
+    this.boardId = this.$route.params.id;
+    this.retrieveCards();
+  },
   methods: {
     retrieveCards() {
       boardsService
@@ -67,12 +71,27 @@ export default {
         });
     },
     deleteBoard() {
-      
+      boardsService.deleteBoard(this.boardId)
+                    .then( () => {
+
+                      this.$store.commit('DELETE_BOARD', this.boardId);
+                      this.$router.push('/');
+                    })
+                    .catch(error => {
+                      if(error.response) // we know we got data from the server (4XX or 5XX error or whatever)
+                      {
+                        this.errorMsg = "There was an error deleting the board, yo." + error.response.statusText;
+                      }
+                      else if(error.request) // server was not reached
+                      {
+                        this.errorMsg = "Error deleting board. Server could not be reached.";
+                      }
+                      else
+                      {
+                        this.errorMsg = "Error deleting board. Could not create the request.";
+                      }
+                    })
     }
-  },
-  created() {
-    this.boardId = this.$route.params.id;
-    this.retrieveCards();
   },
   computed: {
     planned() {

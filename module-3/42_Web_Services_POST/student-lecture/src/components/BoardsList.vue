@@ -17,7 +17,7 @@
         {{ board.title }}
       </router-link>
       <button class="btn addBoard" v-if="!isLoading && !showAddBoard" v-on:click="showAddBoard = !showAddBoard">Add Board</button>
-      <form v-if="showAddBoard">
+      <form v-if="showAddBoard" v-on:submit.prevent="saveNewBoard">
         Board Title:
         <input type="text" class="form-control" v-model="newBoard.title" />
         Background Color:
@@ -59,7 +59,19 @@ export default {
       });
     },
     saveNewBoard() {
-
+      boardsService.addBoard(this.newBoard)
+                    .then(() => {
+                      // notify the user that it completed
+                      this.retrieveBoards();
+                      this.newBoard = {
+                                        title: '',
+                                        backgroundColor: this.randomBackgroundColor()
+                                      },
+                      this.showAddBoard = false;
+                    })
+                    .catch(() => {
+                      this.errorMsg = "The board could not be created."
+                    })
     },
     randomBackgroundColor() {
       return "#" + this.generateHexCode();
